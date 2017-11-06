@@ -50,5 +50,46 @@ class Account extends BaseEmailUser
      */
     protected $id;
 
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $lastName;
+
+    /**
+     * @return string
+     */
+    public function getFirstName() : string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName(string $firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName() : string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName(string $lastName)
+    {
+        $this->lastName = $lastName;
+    }
 
 }
