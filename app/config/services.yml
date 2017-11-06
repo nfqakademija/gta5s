@@ -33,3 +33,6 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    AppBundle\Form\RegistrationFormType:
+        $class: 'AppBundle\Entity\Account'
