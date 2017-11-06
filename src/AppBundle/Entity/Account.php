@@ -12,13 +12,35 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * This is same as BaseUser but will use email instead of username
+ * @package AppBundle\Entity
+ */
+class BaseEmailUser extends BaseUser {
+
+    public function setEmail($email)
+    {
+        $this->setUsername($email);
+
+        return parent::setEmail($email);
+    }
+
+    public function setEmailCanonical($emailCanonical)
+    {
+        $this->setUsernameCanonical($emailCanonical);
+
+        return parent::setEmailCanonical($emailCanonical);
+    }
+
+}
+
+/**
  * This entity is responsible for storing user's data,
  * that is accessible from server and website.
  *
  * @ORM\Entity
  * @ORM\Table(name="account")
  */
-class Account extends BaseUser
+class Account extends BaseEmailUser
 {
 
     /**
@@ -28,12 +50,5 @@ class Account extends BaseUser
      */
     protected $id;
 
-    public function __construct()
-    {
-        parent::__construct();
-
-
-
-    }
 
 }
