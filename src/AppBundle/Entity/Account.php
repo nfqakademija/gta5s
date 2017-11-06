@@ -53,12 +53,12 @@ class Account extends BaseEmailUser
     /**
      * @ORM\Column(type="string", length=64)
      */
-    private $firstName;
+    private $firstName = '';
 
     /**
      * @ORM\Column(type="string", length=64)
      */
-    private $lastName;
+    private $lastName = '';
 
     /**
      * @return string
