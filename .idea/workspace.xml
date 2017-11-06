@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="000f81f3-5562-4a31-8802-760ec2c65437" name="Default" comment="Forgot to add migrate and this bugfix to last commit.">
+    <list default="true" id="000f81f3-5562-4a31-8802-760ec2c65437" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/RegistrationFormType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/RegistrationFormType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Account.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Account.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +17,8 @@
       <file leaf-file-name="Account.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Account.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+            <state relative-caret-position="108">
+              <caret line="49" column="3" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
               <folding>
                 <element signature="e#122#164#0#PHP" expanded="true" />
               </folding>
@@ -308,11 +308,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510006758713</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added First Name and Last Name fields to register">
+      <created>1510006779735</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1510006779735</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8563000" />
+    <option name="totallyTimeSpent" value="8952000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
@@ -359,7 +366,8 @@
     <MESSAGE value="Removed username field from Registration form." />
     <MESSAGE value="Added First Name and Last Name fields into Account." />
     <MESSAGE value="Forgot to add migrate and this bugfix to last commit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Forgot to add migrate and this bugfix to last commit." />
+    <MESSAGE value="Added First Name and Last Name fields to register" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added First Name and Last Name fields to register" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -781,8 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Account.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+        <state relative-caret-position="108">
+          <caret line="49" column="3" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
           <folding>
             <element signature="e#122#164#0#PHP" expanded="true" />
           </folding>

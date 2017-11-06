@@ -10,6 +10,7 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * This is same as BaseUser but will use email instead of username
@@ -39,6 +40,13 @@ class BaseEmailUser extends BaseUser {
  *
  * @ORM\Entity
  * @ORM\Table(name="account")
+ *
+ * @UniqueEntity(
+ *
+ *      fields = {"firstName", "lastName"},
+ *      message = "Ši vardo ir pavardės kombinacija jau yra užimta!"
+ *
+ * )
  */
 class Account extends BaseEmailUser
 {
