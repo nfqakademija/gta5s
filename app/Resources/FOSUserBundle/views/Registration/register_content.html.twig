@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_row(form.email, {
+        'label': 'E-paštas'
+    }) }}
+    {{ form_row(form.firstName, {
+        'label': 'Vardas'
+    }) }}
+    {{ form_row(form.lastName, {
+        'label': 'Pavardė'
+    }) }}
+    {{ form_row(form.plainPassword.first, {
+        'label': 'Slaptažodis'
+    }) }}
+    {{ form_row(form.plainPassword.second, {
+        'label': 'Pakartoti slaptažodį'
+    }) }}
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+{{ form_end(form) }}

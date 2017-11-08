@@ -1,0 +1,269 @@
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+@import "supplementary/fonts.scss";
+
+@import "supplementary/colors.scss";
+
+@import "vendor/css/font-awesome.min.css";
+
+// One-job-styles
+
+.margin-top-average {
+  margin-top: 30px;
+}
+.margin-bottom-average {
+  margin-bottom: 30px;
+}
+@media screen and (min-width: 768px) {
+  .padding-right-0 {
+    padding-right: 0;
+  }
+  .padding-left-0 {
+    padding-left: 0;
+  }
+}
+//Global styles
+
+body {
+  max-width: 1500px;
+}
+
+flex {
+  display: flex;
+}
+body, p, a, span {
+  font-family: OpenSans;
+}
+
+.font-dope {
+  font-family: GTAdope;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+a,
+a:visited {
+  color: $color-lightpink;
+}
+a:hover,
+a:active,
+a:focus {
+  color: $color-pink;
+}
+
+//Header
+
+.logo {
+  height: 35px;
+}
+
+.server-info-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  background: $color-pinkblack;
+  color: white;
+  padding: 0;
+}
+.server-info-line img {
+  height: 30px;
+  display: inline-block;
+  margin: 5px 10px;
+}
+.server-info-line h1 {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin:0
+}
+.server-info-right {
+  margin: 0 10px;
+  margin-left: auto;
+}
+.server-ip {
+  margin:0 20px;
+}
+.online-now {
+  background: #5cb85c;
+  border: 1px solid transparent;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  padding: 15px;
+  color: white;
+  white-space: nowrap;
+}
+
+
+.top-nav-ul li a,
+.top-nav-ul li span {
+  padding: 15px;
+  display: inline-block;
+}
+
+.navbar-top {
+  background: $color-pinkdark;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+
+.navbar-toggle {
+  border: 1px solid $color-lightpink;
+  color: $color-lightpink;
+  border-radius: 10px;
+}
+.navbar-toggle:hover,
+.navbar-toggle:active,
+.navbar-toggle:focus {
+  background-color: $color-pinkblack;
+  color: white;
+}
+
+@media screen and (max-width: 560px) {
+  .server-info-right {
+    margin: 0 10px;
+    width: 100%;
+  }
+  .server-info-right span {
+    display: inline-block;
+    margin-bottom:5px;
+  }
+  .online-now {
+    float: right;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: white;
+    white-space: nowrap;
+  }
+}
+@media screen and (max-width: 400px) {
+  .online-now {
+    float: none;
+    margin:0 20px;
+  }
+}
+
+
+//Front Page Content
+
+.how-to-box {
+  box-shadow: 1px 1px 3px 2px $color-grey;
+  margin: 0 10px;
+  height: 350px;
+}
+@media screen and (max-width: 767px) {
+  .how-to-box {
+    margin: 0;
+  }
+}
+.how-to-box > div {
+  background-color: $color-lightpink;
+}
+.how-to-box > div:first-of-type {
+  background-color: $color-grey;
+  color: $color-goldbrown;
+}
+.how-to-box > div:last-of-type {
+  background-color: white;
+  color: $color-goldbrown;
+}
+.how-to-box p {
+  padding: 20px 20px 0 20px;
+  font-size: 20px;
+}
+.how-to-box h2 {
+  padding: 20px;
+  margin: 0;
+}
+.how-to-box ol li {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+
+#ytplayer {
+  width: 100%;
+  height: 350px;
+  //margin: 0 10px;
+}
+
+
+
+//Footer
+
+//stick to bottom
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.wrap {
+  flex: 1 0 auto;
+}
+footer {
+  border-top: 1px solid $color-grey;
+  color: $color-goldbrown;
+}
+.footer-content {
+  padding: 20px;
+}
+
+
+//Dashboard Layout
+
+.dashboard-nav ul {
+  list-style: none;
+  padding: 0;
+}
+.dashboard-nav ul li a,
+.dashboard-nav ul li a:visited {
+  width: 100%;
+  padding: 10px;
+  background: $color-pinkblack;
+  color: white;
+  text-transform: uppercase;
+  display: block;
+}
+.dashboard-nav ul li a:hover,
+.dashboard-nav ul li a:active,
+.dashboard-nav ul li a:focus {
+  background: $color-grey;
+  color: $color-goldbrown;
+  text-decoration: none;
+}
+.dashboard-nav {
+  width: 150px;
+  background: $color-pinkblack;
+}
+.dashboard-item-box-wrap {
+  width: 100%;
+}
+.dashboard-item-box {
+  padding:200px 10px;
+  background: $color-grey;
+}
+.row-parent {
+  overflow: hidden;
+  position: relative;
+
+}
+
+.flex-dashboard {
+  display: flex;
+  //flex-wrap: wrap;
+}
+
+.dashboard-nav-wrap {
+}
+
+.dashboard-item-box-wrapper-wrap {
+
+}
+

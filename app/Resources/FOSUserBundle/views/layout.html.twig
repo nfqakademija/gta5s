@@ -14,7 +14,7 @@
         {# Server info #}
         <div class="server-info-line">
             <a href="{{ path('homepage') }}">
-                <img class="img-responsive logo" src="{{ asset('assets/images/logo.png') }}">
+               <img class="img-responsive logo" src="{{ asset('assets/images/logo.png') }}">
             </a>
             <a href="{{ path('homepage') }}">
                 <h1>GTA V serveris</h1>
@@ -91,6 +91,31 @@
 
         {# Inherited content #}
         {% block body %}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 margin-top-average">
+
+
+                        {% if app.request.hasPreviousSession %}
+                            {% for type, messages in app.session.flashbag.all() %}
+                                {% for message in messages %}
+                                    <div class="flash-{{ type }}">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+
+                        <div>
+                            {% block fos_user_content %}
+                            {% endblock fos_user_content %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         {% endblock %}
 
     </div> {#end wrap#}
