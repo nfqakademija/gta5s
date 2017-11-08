@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="flex-dashboard">
+        {#<div class="margin-top-average padding-right-0 dashboard-nav-wrap">#}
+            <nav class="dashboard-nav">
+                <ul>
+                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>
+                            Profilis</a></li>
+                    <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
+                            Nariai</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            Žinutės</a></li>
+                </ul>
+            </nav>
+        {#</div>#}
+        {#<div class="margin-top-average padding-left-0 dashboard-item-box-wrapper-wrap">#}
+            <div class="dashboard-item-box-wrap">
+                <div class="dashboard-item-box">
+
+                </div>
+            </div>
+        {#</div>#}
+    </div>
+
+{% endblock %}
