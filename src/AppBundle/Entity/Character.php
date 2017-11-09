@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="players")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PlayersRepository")
  */
-class Player
+class Character
 {
     /**
      * @var int
@@ -20,13 +20,6 @@ class Player
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="account", type="integer")
-     */
-    private $account;
 
     /**
      * @var bool
@@ -170,30 +163,6 @@ class Player
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set account
-     *
-     * @param integer $account
-     *
-     * @return Players
-     */
-    public function setAccount($account)
-    {
-        $this->account = $account;
-
-        return $this;
-    }
-
-    /**
-     * Get account
-     *
-     * @return int
-     */
-    public function getAccount()
-    {
-        return $this->account;
     }
 
     /**

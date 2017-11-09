@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * This is same as BaseUser but will use email instead of username

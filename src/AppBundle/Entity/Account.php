@@ -8,9 +8,9 @@
 
 namespace AppBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use AppBundle\Entity\Character;
 
 /**
  * This entity is responsible for storing user's data,
@@ -45,6 +45,14 @@ class Account extends BaseEmailUser
      * @ORM\Column(type="string", length=64)
      */
     private $lastName = '';
+
+    /**
+     * This may be null, if player hasn't yet created character in game.
+     *
+     * @ORM\OneToOne(targetEntity="Character")
+     * @ORM\JoinColumn(name="character", referencedColumnName="id", nullable=true)
+     */
+    private $character;
 
     /**
      * @return string
@@ -85,5 +93,27 @@ class Account extends BaseEmailUser
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCharacter()
+    {
+        return $this->character;
+    }
+
+    /**
+     * @param mixed $character
+     *
+     * @return Account
+     */
+    public function setCharacter($character) : Account
+    {
+        $this->character = $character;
+
+        return $this;
+    }
+
+
 
 }
