@@ -50,7 +50,7 @@ class Account extends BaseEmailUser
      * This may be null, if player hasn't yet created character in game.
      *
      * @ORM\OneToOne(targetEntity="Character")
-     * @ORM\JoinColumn(name="character", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="character_id", referencedColumnName="id", nullable=true)
      */
     private $character;
 
