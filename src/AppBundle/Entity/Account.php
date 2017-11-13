@@ -17,7 +17,7 @@ use AppBundle\Entity\Character;
  * that is accessible from server and website.
  *
  * @ORM\Entity
- * @ORM\Table(name="account")
+ * @ORM\Table(name="accounts")
  *
  * @UniqueEntity(
  *
