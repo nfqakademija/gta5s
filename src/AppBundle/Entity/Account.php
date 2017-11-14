@@ -8,38 +8,16 @@
 
 namespace AppBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
-/**
- * This is same as BaseUser but will use email instead of username
- * @package AppBundle\Entity
- */
-class BaseEmailUser extends BaseUser {
-
-    public function setEmail($email)
-    {
-        $this->setUsername($email);
-
-        return parent::setEmail($email);
-    }
-
-    public function setEmailCanonical($emailCanonical)
-    {
-        $this->setUsernameCanonical($emailCanonical);
-
-        return parent::setEmailCanonical($emailCanonical);
-    }
-
-}
+use AppBundle\Entity\Character;
 
 /**
  * This entity is responsible for storing user's data,
  * that is accessible from server and website.
  *
  * @ORM\Entity
- * @ORM\Table(name="account")
+ * @ORM\Table(name="accounts")
  *
  * @UniqueEntity(
  *
@@ -69,6 +47,14 @@ class Account extends BaseEmailUser
     private $lastName = '';
 
     /**
+     * This may be null, if player hasn't yet created character in game.
+     *
+     * @ORM\OneToOne(targetEntity="Character")
+     * @ORM\JoinColumn(name="character_id", referencedColumnName="id", nullable=true)
+     */
+    private $character;
+
+    /**
      * @return string
      */
     public function getFirstName() : string
@@ -78,10 +64,14 @@ class Account extends BaseEmailUser
 
     /**
      * @param string $firstName
+     *
+     * @return Account
      */
-    public function setFirstName(string $firstName)
+    public function setFirstName(string $firstName) : Account
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
@@ -94,10 +84,36 @@ class Account extends BaseEmailUser
 
     /**
      * @param string $lastName
+     *
+     * @return Account
      */
-    public function setLastName(string $lastName)
+    public function setLastName(string $lastName) : Account
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCharacter()
+    {
+        return $this->character;
+    }
+
+    /**
+     * @param mixed $character
+     *
+     * @return Account
+     */
+    public function setCharacter($character) : Account
+    {
+        $this->character = $character;
+
+        return $this;
+    }
+
+
 
 }
