@@ -21,7 +21,14 @@
             </a>
             <div class="server-info-right">
                 <span class="server-ip">Serverio IP: rage.l5roleplay.eu </span>
-                <span class="online-now">Online 50/100</span>
+                <span class="online-now">
+
+                    {% if(server_status) %}
+                        Online {{ server_curr_players }}/{{ server_max_players }}
+                    {% else %}
+                        Offline
+                    {% endif %}
+                </span>
             </div>
         </div>
 
