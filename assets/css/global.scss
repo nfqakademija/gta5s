@@ -35,6 +35,10 @@ body, p, a, span {
   font-family: OpenSans;
 }
 
+.block-wrap-500 {
+  max-width: 500px;
+  margin: auto;
+}
 .font-dope {
   font-family: GTAdope;
 }
@@ -295,3 +299,33 @@ img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[hr
   margin: 0;
   padding:15px;
 };
+
+//Auth forms
+
+.form-wrap {
+  max-width:500px;
+  margin: auto;
+}
+
+.form-wrap form {
+  margin: 2em 0 4em;
+}
+
+.auth-button {
+  width: 100%;
+  background: $color-goldbrown;
+  color: $color-lightpink;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  padding: 5px;
+  margin-top: 15px;
+  border: 1px solid $color-goldbrown;
+}
+
+.auth-button:hover,
+.auth-button:active,
+.auth-button:focus {
+  background: $color-pinkblack;
+  border-color: $color-pinkblack;
+}
