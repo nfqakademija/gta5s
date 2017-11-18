@@ -29,7 +29,7 @@ class History
     private $time;
 
     /**
-     * @ORM\OneToOne(targetEntity="Account")
+     * @ORM\ManyToOne(targetEntity="Account")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      */
     private $account;
