@@ -34,8 +34,8 @@ class MapController extends Controller
             $details = json_decode($action->getDetails());
 
             $obj = [];
-            //$obj['firstName'] = $account->getFirstName();
-            //$obj['lastName'] = $account->getLastName();
+            $obj['firstName'] = $account->getFirstName();
+            $obj['lastName'] = $account->getLastName();
             $obj['position'] = $details->{'pos'};
             $map_data['players'][$account->getId()] = $obj;
 
