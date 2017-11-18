@@ -34,5 +34,14 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    AppBundle\Service\CurlService:
+        public: true
+
+    AppBundle\Service\MasterListReader:
+        public: true
+        arguments:
+            - '78.157.93.28:22005'
+            - '@AppBundle\Service\CurlService'
+
     AppBundle\Form\RegistrationFormType:
         $class: 'AppBundle\Entity\Account'
