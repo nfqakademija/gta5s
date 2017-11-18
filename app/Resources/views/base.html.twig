@@ -109,6 +109,9 @@
 
         {% block javascripts %}
             <script src="{{ asset('build/app.js') }}"></script>
+            <script src="{{ asset('build/gtamaploader.js') }}"></script>
+            <script async src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCtCFPnXWV_4nis2Dp07e5ZWQ-awAaQBYs&callback=initMap"></script>
         {% endblock %}
+
     </body>
 </html>

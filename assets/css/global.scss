@@ -43,6 +43,11 @@ body, p, a, span {
   font-weight: bold;
 }
 
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 a,
 a:visited {
   color: $color-lightpink;
@@ -155,18 +160,18 @@ a:focus {
   box-shadow: 1px 1px 3px 2px $color-grey;
   margin: 0 10px;
   height: 350px;
+  background-color: white;
 }
 @media screen and (max-width: 767px) {
   .how-to-box {
     margin: 0;
   }
 }
-.how-to-box > div {
-  background-color: $color-lightpink;
-}
+
 .how-to-box > div:first-of-type {
-  background-color: $color-grey;
+  background-color: white;
   color: $color-goldbrown;
+  border-bottom: 1px solid $color-grey;
 }
 .how-to-box > div:last-of-type {
   background-color: white;
@@ -203,13 +208,14 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  background-color: $color-grey;
 }
 .wrap {
   flex: 1 0 auto;
 }
 footer {
-  border-top: 1px solid $color-grey;
-  color: $color-goldbrown;
+  background: $color-pinkdark;
+  color: $color-lightpink;
 }
 .footer-content {
   padding: 20px;
@@ -267,3 +273,25 @@ footer {
 
 }
 
+//Google Map
+
+#map {
+  height: 500px;
+  width:100%;
+};
+@media screen and (max-width: 767px) {
+  #map {
+    height: 350px;
+  };
+}
+img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[href^="http://maps.google.com/maps"]{
+  display:none !important;
+};
+.map-title-wrap {
+  background: $color-pinkdark;
+};
+.map-title-wrap h2 {
+  color: $color-lightpink;
+  margin: 0;
+  padding:15px;
+};

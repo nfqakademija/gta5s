@@ -22,11 +22,4 @@ class DefaultController extends Controller
     {
         return $this->render('default/dashboard.html.twig', []);
     }
-
-    /**
-     * @Route("dashboard", name="dashboard")
-     */
-    public function dashboardAction() {
-        return $this->render('default/dashboard.html.twig');
-    }
 }

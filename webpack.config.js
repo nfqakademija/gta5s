@@ -13,6 +13,7 @@ Encore
 
     // will output as web/build/app.js
     .addEntry('app', './assets/js/main.js')
+    .addEntry('gtamaploader', './assets/js/gtamaploader.js')
 
     // will output as web/build/global.css
     .addStyleEntry('global', './assets/css/global.scss')
