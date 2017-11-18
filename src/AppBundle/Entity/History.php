@@ -24,7 +24,7 @@ class History
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="time", type="datetime")
+     * @ORM\Column(name="time", type="datetime", options={"default": 0})
      */
     private $time;
 
