@@ -1,6 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+<div class="form-wrap">
+    <h1>Registracija</h1>
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_row(form.email, {
         'label': 'E-paštas'
     }) }}
@@ -17,6 +19,8 @@
         'label': 'Pakartoti slaptažodį'
     }) }}
     <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+        <input class="auth-button" type="submit" value="{{ 'registration.submit'|trans }}" />
     </div>
+</div>
+
 {{ form_end(form) }}
