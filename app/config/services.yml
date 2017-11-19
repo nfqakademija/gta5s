@@ -40,7 +40,7 @@ services:
     AppBundle\Service\MasterListReader:
         public: true
         arguments:
-            - '193.219.181.3:22005'
+            - '78.60.247.37:22005'
             - '@AppBundle\Service\CurlService'
 
     AppBundle\Form\RegistrationFormType:

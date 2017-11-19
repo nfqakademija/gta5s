@@ -20,11 +20,12 @@
                 <h1>Grand Theft Auto V serveris</h1>
             </a>
             <div class="server-info-right">
+
                 {% set sData = server_data() %}
                 {% if sData is not null %}
                     <span class="server-ip">Serverio IP: rage.l5roleplay.eu </span>
                     <span class="online-now">
-                        Žaidėjai: {{ sData.currentPlayerCount }}/{{ sData.maxPlayerCount }}
+                        Žaidėjai: {{ sData.currentPlayerCount }}/{{ sData.maximumPlayerCount }}
                     </span>
                 {% else %}
                     <!-- please port this to offline-now :D -->
@@ -32,6 +33,7 @@
                         Serveris išjungtas
                     </span>
                 {% endif %}
+
             </div>
         </div>
 
