@@ -20,15 +20,19 @@
                 <h1>GTA V serveris</h1>
             </a>
             <div class="server-info-right">
-                <span class="server-ip">Serverio IP: rage.l5roleplay.eu </span>
-                <span class="online-now">
 
-                    {% if(server_status) %}
-                        Online {{ server_curr_players }}/{{ server_max_players }}
-                    {% else %}
-                        Offline
-                    {% endif %}
-                </span>
+                {% if(server_status) %}
+                    <span class="server-ip">Serverio IP: rage.l5roleplay.eu </span>
+                    <span class="online-now">
+                        Žaidėjai: {{ server_curr_players }}/{{ server_max_players }}
+                    </span>
+                {% else %}
+                    <!-- please port this to offline-now :D -->
+                    <span class="online-now" style="background-color: #c9302c;">
+                    Serveris išjungtas
+                    </span>
+                {% endif %}
+
             </div>
         </div>
 
