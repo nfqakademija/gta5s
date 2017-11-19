@@ -115,6 +115,22 @@ function initMap() {
     map.setMapTypeId('Atlas');
 
     map.overlayMapTypes.push(overlayNames);
+
+    google.maps.event.addListener(map, 'maptypeid_changed', function () {
+        var type = map.getMapTypeId();
+        switch (type) {
+            case 'Atlas':
+                document.getElementById('map').firstElementChild.style.backgroundColor = '#0fa8d2';
+                break;
+            case 'Satellite':
+                document.getElementById('map').firstElementChild.style.backgroundColor = '#143d6b';
+                break;
+            case 'Road':
+                document.getElementById('map').firstElementChild.style.backgroundColor = '#1862ad';
+                break;
+        }
+    });
+    
     addMarkers();
 }
 
