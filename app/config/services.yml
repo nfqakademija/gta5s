@@ -45,3 +45,9 @@ services:
 
     AppBundle\Form\RegistrationFormType:
         $class: 'AppBundle\Entity\Account'
+
+    AppBundle\Twig\HeaderExtension:
+        arguments:
+            - '@AppBundle\Service\MasterListReader'
+
+        tags: ['twig.extension']

@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}GTA Serveris{% endblock %}</title>
+        <title>{% block title %}L5RP Projektas{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('build/global.css') }}">
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}" />
     </head>
     <body>
     <div class="wrap">
@@ -17,11 +17,21 @@
                <img class="img-responsive logo" src="{{ asset('assets/images/logo.png') }}">
             </a>
             <a href="{{ path('homepage') }}">
-                <h1>GTA V serveris</h1>
+                <h1>Grand Theft Auto V serveris</h1>
             </a>
             <div class="server-info-right">
-                <span class="server-ip">Serverio IP: rage.l5roleplay.eu </span>
-                <span class="online-now">Online 50/100</span>
+                {% set sData = server_data() %}
+                {% if sData is not null %}
+                    <span class="server-ip">Serverio IP: rage.l5roleplay.eu </span>
+                    <span class="online-now">
+                        Žaidėjai: {{ sData.currentPlayerCount }}/{{ sData.maxPlayerCount }}
+                    </span>
+                {% else %}
+                    <!-- please port this to offline-now :D -->
+                    <span class="online-now">
+                        Serveris išjungtas
+                    </span>
+                {% endif %}
             </div>
         </div>
 

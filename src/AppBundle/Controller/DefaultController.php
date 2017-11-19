@@ -3,8 +3,9 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends HeaderController
+class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
