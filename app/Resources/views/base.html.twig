@@ -21,17 +21,19 @@
             </a>
             <div class="server-info-right">
 
-                {% if(server_status) %}
+                {% set sData = server_data() %}
+                {% if sData is not null %}
                     <span class="server-ip">Serverio IP: rage.l5roleplay.eu </span>
                     <span class="online-now">
-                        Žaidėjai: {{ server_curr_players }}/{{ server_max_players }}
+                        Žaidėjai: {{ sData.currentPlayerCount }}/{{ sData.maxPlayerCount }}
                     </span>
                 {% else %}
                     <!-- please port this to offline-now :D -->
                     <span class="online-now">
-                    Serveris išjungtas
+                        Serveris išjungtas
                     </span>
                 {% endif %}
+
 
             </div>
         </div>
