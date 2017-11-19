@@ -37,7 +37,7 @@ class MapController extends Controller
             $obj['firstName'] = $account->getFirstName();
             $obj['lastName'] = $account->getLastName();
             $obj['position'] = $details->{'pos'};
-            $map_data['players'][$account->getId()] = $obj;
+            $map_data['players']['id'.$account->getId()] = $obj;
 
         }
 
