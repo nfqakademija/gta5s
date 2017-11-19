@@ -1,6 +1,5 @@
 window.map;
 window.isMobile = window.innerWidth < 721 ? true : false;
-var currentMarker;
 var siteURL = window.location.href+"assets/images/";
 
 var bounds = {
@@ -36,7 +35,6 @@ function getNormalizedCoord(coord, zoom) {
 }
 
 function initMap() {
-    console.log('a');
     var mapAtlasOptions = {
         getTileUrl: function (coord, zoom) {
             var normalizedCoord = getNormalizedCoord(coord, zoom);
@@ -74,7 +72,6 @@ function initMap() {
                 return null;
             }
             var bound = Math.pow(2, zoom);
-            console.log(siteURL + 'Tiles_ROAD/' + zoom + '-' + coord.x + '_' + coord.y + '.png');
             return siteURL + 'Tiles_ROAD/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
         },
         tileSize: new google.maps.Size(256, 256),
@@ -132,6 +129,12 @@ function initMap() {
                 document.getElementById('map').firstElementChild.style.backgroundColor = '#1862ad';
                 break;
         }
+    });
+
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(60, -140),
+        map: map,
+        icon: siteURL + 'blip_1.png'
     });
 }
 
