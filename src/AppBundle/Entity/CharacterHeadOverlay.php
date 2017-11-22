@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CharacterHeadOverlay
  *
- * @ORM\Table(name="character_head_overlay")
+ * @ORM\Table(name="character_head_overlays")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CharacterHeadOverlayRepository")
  */
 class CharacterHeadOverlay
@@ -24,7 +24,7 @@ class CharacterHeadOverlay
     /**
      * @var Character
      *
-     * @ORM\OneToOne(targetEntity="Character")
+     * @ORM\ManyToOne(targetEntity="Character")
      * @ORM\JoinColumn(name="character_id", referencedColumnName="id")
      */
     private $character;

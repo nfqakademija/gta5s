@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CharacterFaceFeature
  *
- * @ORM\Table(name="character_face_feature")
+ * @ORM\Table(name="character_face_features")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CharacterFaceFeatureRepository")
  */
 class CharacterFaceFeature
@@ -24,7 +24,7 @@ class CharacterFaceFeature
     /**
      * @var Character
      *
-     * @ORM\OneToOne(targetEntity="Character")
+     * @ORM\ManyToOne(targetEntity="Character")
      * @ORM\JoinColumn(name="character_id", referencedColumnName="id")
      */
     private $character;
@@ -39,9 +39,9 @@ class CharacterFaceFeature
     /**
      * @var float
      *
-     * @ORM\Column(name="val", type="float")
+     * @ORM\Column(name="value", type="float")
      */
-    private $val;
+    private $value;
 
 
     /**
@@ -103,27 +103,27 @@ class CharacterFaceFeature
     }
 
     /**
-     * Set val
+     * Set value
      *
-     * @param float $val
+     * @param float $value
      *
      * @return CharacterFaceFeature
      */
-    public function setVal(float $val) : CharacterFaceFeature
+    public function setValue(float $value) : CharacterFaceFeature
     {
-        $this->val = $val;
+        $this->value = $value;
 
         return $this;
     }
 
     /**
-     * Get val
+     * Get value
      *
      * @return float
      */
-    public function getVal() : float
+    public function getValue() : float
     {
-        return $this->val;
+        return $this->value;
     }
 }
 
