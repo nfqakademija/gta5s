@@ -1,6 +1,6 @@
 window.map;
 window.isMobile = window.innerWidth < 721 ? true : false;
-var siteURL = window.location.href+"assets/images/";
+var siteURL = window.location.href;
 
 var bounds = {
     3: 2,
@@ -35,6 +35,7 @@ function getNormalizedCoord(coord, zoom) {
 }
 
 function initMap() {
+
     var mapAtlasOptions = {
         getTileUrl: function (coord, zoom) {
             var normalizedCoord = getNormalizedCoord(coord, zoom);
@@ -42,7 +43,7 @@ function initMap() {
                 return null;
             }
             var bound = Math.pow(2, zoom);
-            return siteURL + 'Tiles_ATLAS/' + zoom + '-' + normalizedCoord.x + '_' + normalizedCoord.y + '.png';
+            return siteURL + 'assets/images/Tiles_ATLAS/' + zoom + '-' + normalizedCoord.x + '_' + normalizedCoord.y + '.png';
         },
         tileSize: new google.maps.Size(256, 256),
         maxZoom: 7,
@@ -57,7 +58,7 @@ function initMap() {
                 return null;
             }
             var bound = Math.pow(2, zoom);
-            return siteURL + 'Tiles_SAT/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
+            return siteURL + 'assets/images/Tiles_SAT/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
         },
         tileSize: new google.maps.Size(256, 256),
         maxZoom: 7,
@@ -72,7 +73,7 @@ function initMap() {
                 return null;
             }
             var bound = Math.pow(2, zoom);
-            return siteURL + 'Tiles_ROAD/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
+            return siteURL + 'assets/images/Tiles_ROAD/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
         },
         tileSize: new google.maps.Size(256, 256),
         maxZoom: 7,
@@ -87,7 +88,7 @@ function initMap() {
                 return null;
             }
             var bound = Math.pow(2, zoom);
-            return siteURL + 'Tiles_Streets/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
+            return siteURL + 'assets/images/Tiles_Streets/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
         },
         tileSize: new google.maps.Size(256, 256)
     });
@@ -115,7 +116,6 @@ function initMap() {
 
     map.overlayMapTypes.push(overlayNames);
 
-
     google.maps.event.addListener(map, 'maptypeid_changed', function () {
         var type = map.getMapTypeId();
         switch (type) {
@@ -130,12 +130,61 @@ function initMap() {
                 break;
         }
     });
+    
+    addMarkers();
+}
 
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(60, -140),
-        map: map,
-        icon: siteURL + 'blip_1.png'
+function addMarkers() {
+    $.getJSON(siteURL + 'json/map', function(data) {
+        var arr = $.map(data.players, function(el) { return el });
+        console.log(arr);
+
+        var i = 0;
+        arr.forEach(function(feature) {
+            contentStrings = '<div id="content">'+
+                '<div id="siteNotice">'+
+                '</div>'+
+                '<h4 id="firstHeading" class="firstHeading">'+feature.firstName+' '+feature.lastName+'</h4>'+
+                // '<div id="bodyContent">'+
+                // '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+                // 'sandstone rock formation in the southern part of the '+
+                // 'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+                // 'south west of the nearest large town, Alice Springs; 450&#160;km '+
+                // '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+                // 'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+                // 'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+                // 'Aboriginal people of the area. It has many springs, waterholes, '+
+                // 'rock caves and ancient paintings. Uluru is listed as a World '+
+                // 'Heritage Site.</p>'+
+                // '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+                // 'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+                // '(last visited June 22, 2009).</p>'+
+                // '</div>'+
+                '</div>';
+
+            infowindow = new google.maps.InfoWindow({
+                content: contentStrings
+            });
+
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(feature.position.x, feature.position.y),
+                map: map,
+                icon: siteURL + 'assets/images/blip_1.png'
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+                return function () {
+                    infowindow.setContent(content);
+                    infowindow.open(map, marker);
+                };
+            })(marker, content, infowindow));;
+            i++;
+        });
+        console.log(Date.now());
     });
 }
 
+window.addMarkers = addMarkers;
 window.initMap = initMap;
+
+setInterval(addMarkers, 15000);
