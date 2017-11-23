@@ -20,7 +20,7 @@ class HistoryRepository extends EntityRepository
      *
      * @return array
      */
-    public function getNewestHistoryActionByOnlinePlayer(string $datetime = "2017-11-18 14:55:46") : array
+    public function getNewestHistoryActionByOnlinePlayer(string $datetime = "now") : array
     {
 
         $to = new \DateTime($datetime);
