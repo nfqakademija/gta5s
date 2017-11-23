@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Players
  *
- * @ORM\Table(name="players")
+ * @ORM\Table(name="characters")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PlayersRepository")
  */
 class Character
@@ -71,65 +71,65 @@ class Character
     private $job;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="face", type="boolean", length=3, options={"unsigned": true})
+     * @ORM\Column(name="face", type="integer")
      */
     private $face;
 
     /**
-     * @var float
+     * @var int
      *
      * @ORM\Column(name="skinCol", type="float")
      */
     private $skinCol;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="hair", type="boolean", length=3, options={"unsigned": true})
+     * @ORM\Column(name="hair", type="integer")
      */
     private $hair;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="hairCol", type="boolean", length=4, options={"unsigned": true})
+     * @ORM\Column(name="hairCol", type="integer")
      */
     private $hairCol;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="hairHCol", type="boolean", length=4, options={"unsigned": true})
+     * @ORM\Column(name="hairHCol", type="integer")
      */
     private $hairHCol;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="eyeBCol", type="boolean", length=4, options={"unsigned": true})
+     * @ORM\Column(name="eyeBCol", type="integer")
      */
     private $eyeBCol;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="beardCol", type="boolean", length=4, options={"unsigned": true})
+     * @ORM\Column(name="beardCol", type="integer")
      */
     private $beardCol;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="chestCol", type="boolean", length=4, options={"unsigned": true})
+     * @ORM\Column(name="chestCol", type="integer")
      */
     private $chestCol;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="eyeCol", type="boolean", length=3, options={"unsigned": true})
+     * @ORM\Column(name="eyeCol", type="integer")
      */
     private $eyeCol;
 
@@ -141,9 +141,9 @@ class Character
     private $top;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="legs", type="string", length=255)
+     * @ORM\Column(name="legs", type="integer")
      */
     private $legs;
 
@@ -160,7 +160,7 @@ class Character
      *
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -170,9 +170,9 @@ class Character
      *
      * @param boolean $gender
      *
-     * @return Players
+     * @return Character
      */
-    public function setGender($gender)
+    public function setGender($gender) : Character
     {
         $this->gender = $gender;
 
@@ -184,7 +184,7 @@ class Character
      *
      * @return bool
      */
-    public function getGender()
+    public function getGender() : bool
     {
         return $this->gender;
     }
@@ -192,11 +192,11 @@ class Character
     /**
      * Set x
      *
-     * @param string $x
+     * @param float $x
      *
-     * @return Players
+     * @return Character
      */
-    public function setX($x)
+    public function setX($x) : Character
     {
         $this->x = $x;
 
@@ -206,9 +206,9 @@ class Character
     /**
      * Get x
      *
-     * @return string
+     * @return float
      */
-    public function getX()
+    public function getX() : float
     {
         return $this->x;
     }
@@ -218,9 +218,9 @@ class Character
      *
      * @param float $y
      *
-     * @return Players
+     * @return Character
      */
-    public function setY($y)
+    public function setY(float $y) : Character
     {
         $this->y = $y;
 
@@ -232,7 +232,7 @@ class Character
      *
      * @return float
      */
-    public function getY()
+    public function getY() : float
     {
         return $this->y;
     }
@@ -242,9 +242,9 @@ class Character
      *
      * @param float $z
      *
-     * @return Players
+     * @return Character
      */
-    public function setZ($z)
+    public function setZ(float $z) : Character
     {
         $this->z = $z;
 
@@ -256,7 +256,7 @@ class Character
      *
      * @return float
      */
-    public function getZ()
+    public function getZ() : float
     {
         return $this->z;
     }
@@ -266,9 +266,9 @@ class Character
      *
      * @param integer $xp
      *
-     * @return Players
+     * @return Character
      */
-    public function setXp($xp)
+    public function setXp(int $xp) : Character
     {
         $this->xp = $xp;
 
@@ -280,7 +280,7 @@ class Character
      *
      * @return int
      */
-    public function getXp()
+    public function getXp() : int
     {
         return $this->xp;
     }
@@ -290,9 +290,9 @@ class Character
      *
      * @param integer $money
      *
-     * @return Players
+     * @return Character
      */
-    public function setMoney($money)
+    public function setMoney(int $money) : Character
     {
         $this->money = $money;
 
@@ -304,7 +304,7 @@ class Character
      *
      * @return int
      */
-    public function getMoney()
+    public function getMoney() : int
     {
         return $this->money;
     }
@@ -314,9 +314,9 @@ class Character
      *
      * @param integer $job
      *
-     * @return Players
+     * @return Character
      */
-    public function setJob($job)
+    public function setJob(int $job) : Character
     {
         $this->job = $job;
 
@@ -328,7 +328,7 @@ class Character
      *
      * @return int
      */
-    public function getJob()
+    public function getJob() : int
     {
         return $this->job;
     }
@@ -336,11 +336,11 @@ class Character
     /**
      * Set face
      *
-     * @param boolean $face
+     * @param int $face
      *
-     * @return Players
+     * @return Character
      */
-    public function setFace($face)
+    public function setFace(int $face) : Character
     {
         $this->face = $face;
 
@@ -350,9 +350,9 @@ class Character
     /**
      * Get face
      *
-     * @return bool
+     * @return int
      */
-    public function getFace()
+    public function getFace() : int
     {
         return $this->face;
     }
@@ -362,9 +362,9 @@ class Character
      *
      * @param float $skinCol
      *
-     * @return Players
+     * @return Character
      */
-    public function setSkinCol($skinCol)
+    public function setSkinCol(float $skinCol) : Character
     {
         $this->skinCol = $skinCol;
 
@@ -376,7 +376,7 @@ class Character
      *
      * @return float
      */
-    public function getSkinCol()
+    public function getSkinCol() : float
     {
         return $this->skinCol;
     }
@@ -384,11 +384,11 @@ class Character
     /**
      * Set hair
      *
-     * @param boolean $hair
+     * @param int $hair
      *
-     * @return Players
+     * @return Character
      */
-    public function setHair($hair)
+    public function setHair(int $hair) : Character
     {
         $this->hair = $hair;
 
@@ -398,9 +398,9 @@ class Character
     /**
      * Get hair
      *
-     * @return bool
+     * @return int
      */
-    public function getHair()
+    public function getHair() : int
     {
         return $this->hair;
     }
@@ -408,11 +408,11 @@ class Character
     /**
      * Set hairCol
      *
-     * @param boolean $hairCol
+     * @param int $hairCol
      *
-     * @return Players
+     * @return Character
      */
-    public function setHairCol($hairCol)
+    public function setHairCol(int $hairCol) : Character
     {
         $this->hairCol = $hairCol;
 
@@ -422,9 +422,9 @@ class Character
     /**
      * Get hairCol
      *
-     * @return bool
+     * @return int
      */
-    public function getHairCol()
+    public function getHairCol() : int
     {
         return $this->hairCol;
     }
@@ -432,11 +432,11 @@ class Character
     /**
      * Set hairHCol
      *
-     * @param boolean $hairHCol
+     * @param int $hairHCol
      *
-     * @return Players
+     * @return Character
      */
-    public function setHairHCol($hairHCol)
+    public function setHairHCol(int $hairHCol) : Character
     {
         $this->hairHCol = $hairHCol;
 
@@ -446,9 +446,9 @@ class Character
     /**
      * Get hairHCol
      *
-     * @return bool
+     * @return int
      */
-    public function getHairHCol()
+    public function getHairHCol() : int
     {
         return $this->hairHCol;
     }
@@ -456,11 +456,11 @@ class Character
     /**
      * Set eyeBCol
      *
-     * @param boolean $eyeBCol
+     * @param int $eyeBCol
      *
-     * @return Players
+     * @return Character
      */
-    public function setEyeBCol($eyeBCol)
+    public function setEyeBCol(int $eyeBCol) : Character
     {
         $this->eyeBCol = $eyeBCol;
 
@@ -470,9 +470,9 @@ class Character
     /**
      * Get eyeBCol
      *
-     * @return bool
+     * @return int
      */
-    public function getEyeBCol()
+    public function getEyeBCol() : int
     {
         return $this->eyeBCol;
     }
@@ -480,11 +480,11 @@ class Character
     /**
      * Set beardCol
      *
-     * @param boolean $beardCol
+     * @param int $beardCol
      *
-     * @return Players
+     * @return Character
      */
-    public function setBeardCol($beardCol)
+    public function setBeardCol(int $beardCol) : Character
     {
         $this->beardCol = $beardCol;
 
@@ -494,9 +494,9 @@ class Character
     /**
      * Get beardCol
      *
-     * @return bool
+     * @return int
      */
-    public function getBeardCol()
+    public function getBeardCol() : int
     {
         return $this->beardCol;
     }
@@ -504,11 +504,11 @@ class Character
     /**
      * Set chestCol
      *
-     * @param boolean $chestCol
+     * @param int $chestCol
      *
-     * @return Players
+     * @return Character
      */
-    public function setChestCol($chestCol)
+    public function setChestCol(int $chestCol) : Character
     {
         $this->chestCol = $chestCol;
 
@@ -518,9 +518,9 @@ class Character
     /**
      * Get chestCol
      *
-     * @return bool
+     * @return int
      */
-    public function getChestCol()
+    public function getChestCol() : int
     {
         return $this->chestCol;
     }
@@ -528,11 +528,11 @@ class Character
     /**
      * Set eyeCol
      *
-     * @param boolean $eyeCol
+     * @param int $eyeCol
      *
-     * @return Players
+     * @return Character
      */
-    public function setEyeCol($eyeCol)
+    public function setEyeCol(int $eyeCol) : Character
     {
         $this->eyeCol = $eyeCol;
 
@@ -542,9 +542,9 @@ class Character
     /**
      * Get eyeCol
      *
-     * @return bool
+     * @return int
      */
-    public function getEyeCol()
+    public function getEyeCol() : int
     {
         return $this->eyeCol;
     }
@@ -552,11 +552,11 @@ class Character
     /**
      * Set top
      *
-     * @param integer $top
+     * @param int $top
      *
-     * @return Players
+     * @return Character
      */
-    public function setTop($top)
+    public function setTop(int $top) : Character
     {
         $this->top = $top;
 
@@ -568,7 +568,7 @@ class Character
      *
      * @return int
      */
-    public function getTop()
+    public function getTop() : int
     {
         return $this->top;
     }
@@ -576,11 +576,11 @@ class Character
     /**
      * Set legs
      *
-     * @param string $legs
+     * @param int $legs
      *
-     * @return Players
+     * @return Character
      */
-    public function setLegs($legs)
+    public function setLegs(int $legs) : Character
     {
         $this->legs = $legs;
 
@@ -590,9 +590,9 @@ class Character
     /**
      * Get legs
      *
-     * @return string
+     * @return int
      */
-    public function getLegs()
+    public function getLegs() : int
     {
         return $this->legs;
     }
@@ -600,11 +600,11 @@ class Character
     /**
      * Set shoes
      *
-     * @param integer $shoes
+     * @param int $shoes
      *
-     * @return Players
+     * @return Character
      */
-    public function setShoes($shoes)
+    public function setShoes(int $shoes) : Character
     {
         $this->shoes = $shoes;
 
@@ -616,7 +616,7 @@ class Character
      *
      * @return int
      */
-    public function getShoes()
+    public function getShoes() : int
     {
         return $this->shoes;
     }
