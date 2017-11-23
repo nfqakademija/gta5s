@@ -162,15 +162,6 @@ function initMap() {
         }
     });
 
-    // Show the lat and lng under the mouse cursor.
-    var coordsDiv = document.getElementById('coords');
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
-    map.addListener('mousemove', function(event) {
-        coordsDiv.textContent =
-            'lat: ' + Math.round(event.latLng.lat()) + ', ' +
-            'lng: ' + Math.round(event.latLng.lng());
-    });
-
     addMarkers();
 }
 
@@ -180,10 +171,11 @@ function addMarkers() {
 
         var i = 0;
         arr.forEach(function(feature) {
-            contentStrings = '<div id="content">'+
-                '<div id="siteNotice">'+
-                '</div>'+
-                '<h4 id="firstHeading" class="firstHeading">'+feature.firstName+' '+feature.lastName+'</h4>'+
+            contentStrings = feature.firstName+' '+feature.lastName;
+                // '<div id="content">'+
+                // '<div id="siteNotice">'+
+                // '</div>'+
+                // '<h4 id="firstHeading" class="firstHeading">'+feature.firstName+' '+feature.lastName+'</h4>'+
                 // '<div id="bodyContent">'+
                 // '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
                 // 'sandstone rock formation in the southern part of the '+
@@ -199,7 +191,7 @@ function addMarkers() {
                 // 'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
                 // '(last visited June 22, 2009).</p>'+
                 // '</div>'
-                '</div>';
+                // '</div>';
 
 
             infowindow = new google.maps.InfoWindow({
@@ -214,25 +206,63 @@ function addMarkers() {
             };
 
 
+            // function convertYtoLatLng(y) {
+            //     if ((y < 0) && ((y * 0.006896) + 58 < 58)) {
+            //         return y = -(y * 0.006896) + 58;
+            //     }
+            //     if ((y < 0) && ((y * 0.006896) + 58 >= 58) || (y >= 0) && ((y * 0.006896) + 58 < 58)) {
+            //         return y = (y * 0.006896) + 58;
+            //     }
+            //     else {
+            //         return y = -(y * 0.006896) + 58;
+            //     }
+            // }
+            // console.log(convertYtoLatLng(3817));
+
             // function convertXtoLatLng(x) {
-            //     return (x * 0.00972) - 124.57;
+            //     if ((x < 0) && ((x * 0.006896) + 39.4 < 39.4)) {
+            //         return (x * 0.006896) + 39.4;
+            //     }
+            //     else if ((x < 0) && ((x * 0.006896) + 39.4 >= 39.4) || (x >= 0) && ((x * 0.006896) + 39.4 < 39.4)) {
+            //         return -(x * 0.006896) + 39.4;
+            //     }
+            //     else {
+            //         return (x * 0.006896) + 39.4;
+            //     }
             // }
-            // console.log(convertXtoLatLng(1972.6060));
-            //
-            // function convertXYtoLatLng(x, y) {
-            //
-            //     var long = (x * 0.00972) - 124.57;
-            //     var lat = (y * 0.002516) + 69.7;
-            //
-            //     return new google.maps.LatLng(lat, long);
-            // }
-            //
-            // convertXYtoLatLng(1972.6060, 3817.044);
+            // console.log(convertXtoLatLng(-1151));
+
+            function convertXYtoLatLng(x, y) {
+                var lat;
+                var long;
+
+                if ((x < 0) && ((x * 0.006896) + 39.4 < 39.4)) {
+                    long = (x * 0.006896) + 39.4;
+                }
+                else if ((x < 0) && ((x * 0.006896) + 39.4 >= 39.4) || (x >= 0) && ((x * 0.006896) + 39.4 < 39.4)) {
+                    long = -(x * 0.006896) + 39.4;
+                }
+                else {
+                    long = (x * 0.006896) + 39.4;
+                }
+
+                if ((y < 0) && ((y * 0.006896) + 58 < 58)) {
+                    lat = -(y * 0.006896) + 58;
+                }
+                else if ((y < 0) && ((y * 0.006896) + 58 >= 58) || (y >= 0) && ((y * 0.006896) + 58 < 58)) {
+                    lat = (y * 0.006896) + 58;
+                }
+                else {
+                    lat = -(y * 0.006896) + 58;
+                }
+
+                return new google.maps.LatLng(lat, long);
+            }
 
 
             marker = new google.maps.Marker({
-                // position: new google.maps.LatLng(feature.position.y - 124.5, feature.position.x + 69.7, ),
-                position:  new google.maps.LatLng(31.7, 53),
+                position: convertXYtoLatLng(feature.position.x, feature.position.y),
+                // position:  new google.maps.LatLng(31.7, 53),
                 map: map,
                 icon: siteURL + 'assets/images/blip_1.png',
             });
