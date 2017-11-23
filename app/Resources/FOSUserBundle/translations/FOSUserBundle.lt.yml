@@ -11,7 +11,7 @@ group:
         deleted: 'Grupė ištrinta.'
 security:
     login:
-        username: 'Naudotojo vardas'
+        username: 'El. paštas'
         password: Slaptažodis
         remember_me: Atsiminti
         submit: Prisijungti
