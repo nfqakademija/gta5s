@@ -1,5 +1,3 @@
-window.map;
-window.isMobile = window.innerWidth < 721 ? true : false;
 var siteURL = window.location.href;
 
 var bounds = {
@@ -9,6 +7,7 @@ var bounds = {
     6: 21,
     7: 42
 };
+
 
 function getNormalizedCoord(coord, zoom) {
     var y = coord.y;
@@ -23,9 +22,9 @@ function getNormalizedCoord(coord, zoom) {
         return null;
     }
 
-    // repeat across x-axis
+    // don't repeat across x-axis (vertically)
     if (x < 0 || x >= tileRange) {
-        x = (x % tileRange + tileRange) % tileRange;
+        return null;
     }
 
     return {
@@ -58,7 +57,7 @@ function initMap() {
                 return null;
             }
             var bound = Math.pow(2, zoom);
-            return siteURL + 'assets/images/Tiles_SAT/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
+            return siteURL + 'assets/images/Tiles_SAT/' + zoom + '-' + normalizedCoord.x + '_' + normalizedCoord.y + '.png';
         },
         tileSize: new google.maps.Size(256, 256),
         maxZoom: 7,
@@ -73,7 +72,7 @@ function initMap() {
                 return null;
             }
             var bound = Math.pow(2, zoom);
-            return siteURL + 'assets/images/Tiles_ROAD/' + zoom + '-' + coord.x + '_' + coord.y + '.png';
+            return siteURL + 'assets/images/Tiles_ROAD/' + zoom + '-' + normalizedCoord.x + '_' + normalizedCoord.y + '.png';
         },
         tileSize: new google.maps.Size(256, 256),
         maxZoom: 7,
@@ -93,22 +92,54 @@ function initMap() {
         tileSize: new google.maps.Size(256, 256)
     });
 
+
     var mapAtlas = new google.maps.ImageMapType(mapAtlasOptions);
     var mapSatellite = new google.maps.ImageMapType(mapSatelliteOptions);
     var mapRoad = new google.maps.ImageMapType(mapRoadOptions);
 
-    var centerCoords = new google.maps.LatLng(window.startLat || 66.722541, window.startLng || -140.625000);
+    mapAtlas.projection = {
+        fromLatLngToPoint: function(latLng) {
+            return new google.maps.Point(
+                latLng.lng(),
+                latLng.lat()
+            );
+        },
+        fromPointToLatLng: function(point) {
+            return new google.maps.LatLng(
+                point.y,
+                point.x
+            );
+        }
+    };
+    mapSatellite.projection = {
+        fromLatLngToPoint: function(latLng) {
+            return new google.maps.Point(latLng.lng(), latLng.lat());
+        },
+        fromPointToLatLng: function(point) {
+            return new google.maps.LatLng(point.y, point.x);
+        }
+    };
+    mapRoad.projection = {
+        fromLatLngToPoint: function(latLng) {
+            return new google.maps.Point(latLng.lng(), latLng.lat());
+        },
+        fromPointToLatLng: function(point) {
+            return new google.maps.LatLng(point.y, point.x);
+        }
+    };
+
     var mapOptions = {
         backgroundColor: '#0fa8d2',
-        center: centerCoords,
-        zoom: parseInt(window.startZoom) || 4,
+        center: new google.maps.LatLng(62, 39),
+        zoom: 4,
         streetViewControl: false,
         mapTypeControlOptions: {
             mapTypeIds: ['Atlas', 'Satellite', 'Road']
         }
-    };
+    }
 
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
     map.mapTypes.set('Atlas', mapAtlas);
     map.mapTypes.set('Satellite', mapSatellite);
     map.mapTypes.set('Road', mapRoad);
@@ -130,14 +161,22 @@ function initMap() {
                 break;
         }
     });
-    
+
+    // Show the lat and lng under the mouse cursor.
+    var coordsDiv = document.getElementById('coords');
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
+    map.addListener('mousemove', function(event) {
+        coordsDiv.textContent =
+            'lat: ' + Math.round(event.latLng.lat()) + ', ' +
+            'lng: ' + Math.round(event.latLng.lng());
+    });
+
     addMarkers();
 }
 
 function addMarkers() {
     $.getJSON(siteURL + 'json/map', function(data) {
         var arr = $.map(data.players, function(el) { return el });
-        console.log(arr);
 
         var i = 0;
         arr.forEach(function(feature) {
@@ -159,18 +198,55 @@ function addMarkers() {
                 // '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
                 // 'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
                 // '(last visited June 22, 2009).</p>'+
-                // '</div>'+
+                // '</div>'
                 '</div>';
+
 
             infowindow = new google.maps.InfoWindow({
                 content: contentStrings
             });
 
+            var image = {
+                url: siteURL + 'assets/images/blip_1.png',
+                size: new google.maps.Size(15, 15),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(7.5, 7.5)
+            };
+
+
+            // function convertXtoLatLng(x) {
+            //     return (x * 0.00972) - 124.57;
+            // }
+            // console.log(convertXtoLatLng(1972.6060));
+            //
+            // function convertXYtoLatLng(x, y) {
+            //
+            //     var long = (x * 0.00972) - 124.57;
+            //     var lat = (y * 0.002516) + 69.7;
+            //
+            //     return new google.maps.LatLng(lat, long);
+            // }
+            //
+            // convertXYtoLatLng(1972.6060, 3817.044);
+
+
             marker = new google.maps.Marker({
-                position: new google.maps.LatLng(feature.position.x, feature.position.y),
+                // position: new google.maps.LatLng(feature.position.y - 124.5, feature.position.x + 69.7, ),
+                position:  new google.maps.LatLng(31.7, 53),
                 map: map,
-                icon: siteURL + 'assets/images/blip_1.png'
+                icon: siteURL + 'assets/images/blip_1.png',
             });
+
+
+            var coordsDiv = document.getElementById('coords');
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
+            map.addListener('mousemove', function(event) {
+                coordsDiv.textContent =
+                    'lat: ' + Math.round(event.latLng.lat()) + ', ' +
+                    'lng: ' + Math.round(event.latLng.lng());
+            });
+
+
 
             google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
                 return function () {
