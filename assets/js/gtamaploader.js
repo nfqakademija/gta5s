@@ -200,7 +200,7 @@ function addMarkers() {
 
             var image = {
                 url: siteURL + 'assets/images/blip_1.png',
-                size: new google.maps.Size(15, 15),
+                scaledSize: new google.maps.Size(15, 15),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(7.5, 7.5)
             };
@@ -262,9 +262,8 @@ function addMarkers() {
 
             marker = new google.maps.Marker({
                 position: convertXYtoLatLng(feature.position.x, feature.position.y),
-                // position:  new google.maps.LatLng(31.7, 53),
                 map: map,
-                icon: siteURL + 'assets/images/blip_1.png',
+                icon: image
             });
 
 
