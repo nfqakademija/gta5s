@@ -8,6 +8,7 @@ var bounds = {
     7: 42
 };
 
+var markers = [];
 
 function getNormalizedCoord(coord, zoom) {
     var y = coord.y;
@@ -166,6 +167,27 @@ function initMap() {
 }
 
 function addMarkers() {
+    function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
+    // Removes the markers from the map, but keeps them in the array.
+    function clearMarkers() {
+        setMapOnAll(null);
+    }
+    // Shows any markers currently in the array.
+    function showMarkers() {
+        setMapOnAll(map);
+    }
+    // Deletes all markers in the array by removing references to them.
+    function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+    }
+
+    deleteMarkers()
+
     $.getJSON(siteURL + 'json/map', function(data) {
         var arr = $.map(data.players, function(el) { return el });
 
@@ -265,17 +287,7 @@ function addMarkers() {
                 map: map,
                 icon: image
             });
-
-
-            var coordsDiv = document.getElementById('coords');
-            map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
-            map.addListener('mousemove', function(event) {
-                coordsDiv.textContent =
-                    'lat: ' + Math.round(event.latLng.lat()) + ', ' +
-                    'lng: ' + Math.round(event.latLng.lng());
-            });
-
-
+            markers.push(marker);
 
             google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
                 return function () {
@@ -292,4 +304,4 @@ function addMarkers() {
 window.addMarkers = addMarkers;
 window.initMap = initMap;
 
-setInterval(addMarkers, 15000);
+setInterval(addMarkers, 5000);
