@@ -105,6 +105,16 @@ a:focus {
   color: white;
   white-space: nowrap;
 }
+.offline-now {
+  background: $color-red;
+  border: 1px solid transparent;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  padding: 15px;
+  color: white;
+  white-space: nowrap;
+}
 
 
 .top-nav-ul li a,
@@ -149,9 +159,21 @@ a:focus {
     color: white;
     white-space: nowrap;
   }
+  .offline-now {
+    float: right;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: white;
+    white-space: nowrap;
+  }
 }
 @media screen and (max-width: 400px) {
   .online-now {
+    float: none;
+    margin:0 20px;
+  }
+  .offline-now {
     float: none;
     margin:0 20px;
   }
