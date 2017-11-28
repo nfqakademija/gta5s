@@ -40,8 +40,16 @@ services:
     AppBundle\Service\MasterListReader:
         public: true
         arguments:
-            - '137.74.173.176:22005'
+            - '%gta_server_ip%'
             - '@AppBundle\Service\CurlService'
+
+    AppBundle\Service\CachedMasterListReader:
+        public: true
+        arguments:
+            - '%gta_server_ip%'
+            - '@AppBundle\Service\CurlService'
+            - '@cache.system'
+            - 5
 
     AppBundle\Form\RegistrationFormType:
         $class: 'AppBundle\Entity\Account'
