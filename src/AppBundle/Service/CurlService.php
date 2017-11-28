@@ -18,16 +18,14 @@ class CurlService
      * @param string $url
      * @return string
      */
-    public function callURL(string $url) : string {
-
+    public function callURL(string $url) : string
+    {
         //Lets configure call.
         $session = curl_init($url);
-        curl_setopt($session, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 
         //Lets execute call.
         return curl_exec($session);
-
     }
-
 
 }

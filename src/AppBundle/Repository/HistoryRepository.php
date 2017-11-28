@@ -2,7 +2,6 @@
 
 namespace AppBundle\Repository;
 
-
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityRepository;
 

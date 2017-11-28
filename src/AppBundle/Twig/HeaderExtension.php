@@ -21,9 +21,7 @@ class HeaderExtension extends \Twig_Extension
     {
         try {
             $this->currData = $masterListReader->fetch();
-        }
-
-        catch (ServerOfflineException $e) {
+        } catch (ServerOfflineException $e) {
             $this->currData = null;
         }
     }
@@ -37,9 +35,7 @@ class HeaderExtension extends \Twig_Extension
 
     public function serverData() : ?MasterListServerInfo
     {
-
         return $this->currData;
-
     }
 
 

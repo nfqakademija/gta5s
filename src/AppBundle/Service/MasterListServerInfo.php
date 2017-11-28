@@ -61,10 +61,15 @@ class MasterListServerInfo
      */
     private $maxPlayers;
 
-    public function __construct(string $name, string $ip, string $gamemode, string $url,
-                                string $lang, int $currPlayers, int $maxPlayers)
-    {
-
+    public function __construct(
+        string $name,
+        string $ip,
+        string $gamemode,
+        string $url,
+        string $lang,
+        int $currPlayers,
+        int $maxPlayers
+    ) {
         $this->name = $name;
         $this->ip = $ip;
         $this->gamemode = $gamemode;
@@ -72,7 +77,6 @@ class MasterListServerInfo
         $this->lang = $lang;
         $this->currPlayers = $currPlayers;
         $this->maxPlayers = $maxPlayers;
-
     }
 
     /**
@@ -130,7 +134,5 @@ class MasterListServerInfo
     {
         return $this->maxPlayers;
     }
-
-
 
 }

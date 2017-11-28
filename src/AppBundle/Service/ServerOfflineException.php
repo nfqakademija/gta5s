@@ -11,4 +11,6 @@ namespace AppBundle\Service;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class ServerOfflineException extends Exception
-{}
+{
+
+}

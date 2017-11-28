@@ -25,10 +25,8 @@ class MasterListReader
 
     public function __construct($serverIP, $curl)
     {
-
         $this->serverIP = $serverIP;
         $this->curl = $curl;
-
     }
 
     /**
@@ -37,7 +35,6 @@ class MasterListReader
      */
     public function fetch() : MasterListServerInfo
     {
-
         //Fetches RageMP's master list json.
         $json = $this->curl->callURL('https://cdn.rage.mp/master/');
 
@@ -45,13 +42,13 @@ class MasterListReader
         $data = json_decode($json);
 
         //Finds out if our server is online.
-        if(empty($json))
+        if (empty($json)) {
             throw new ServerOfflineException('Failed to connect to RageMP\'s Master List!');
-
-        else if(!array_key_exists($this->serverIP, $data))
-            throw new ServerOfflineException('Could not find announced server with this IP address: ' . $this->serverIP);
-
-        else
+        } elseif (!array_key_exists($this->serverIP, $data)) {
+            throw new ServerOfflineException(
+                'Could not find announced server with this IP address: ' . $this->serverIP
+            );
+        } else {
             return new MasterListServerInfo(
                 $data->{$this->serverIP}->{'name'},
                 $this->serverIP,
@@ -61,7 +58,7 @@ class MasterListReader
                 $data->{$this->serverIP}->{'players'},
                 $data->{$this->serverIP}->{'maxplayers'}
             );
-
+        }
     }
 
     public function getServerIP() : string

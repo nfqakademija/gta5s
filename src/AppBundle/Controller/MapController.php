@@ -28,8 +28,7 @@ class MapController extends Controller
         $map_data = [];
         $map_data['players'] = [];
 
-        foreach($actions as $action) {
-
+        foreach ($actions as $action) {
             $account = $action->getAccount();
             $details = json_decode($action->getDetails());
 
@@ -38,7 +37,6 @@ class MapController extends Controller
             $obj['lastName'] = $account->getLastName();
             $obj['position'] = $details->{'pos'};
             $map_data['players']['id'.$account->getId()] = $obj;
-
         }
 
         return $this->json($map_data);

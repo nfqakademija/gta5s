@@ -57,7 +57,7 @@ class History
      *
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -69,7 +69,7 @@ class History
      *
      * @return History
      */
-    public function setTime($time)
+    public function setTime(\DateTime $time) : History
     {
         $this->time = $time;
 
@@ -81,7 +81,7 @@ class History
      *
      * @return \DateTime
      */
-    public function getTime()
+    public function getTime() : \DateTime
     {
         return $this->time;
     }
@@ -89,11 +89,11 @@ class History
     /**
      * Set account
      *
-     * @param integer $account
+     * @param Account $account
      *
      * @return History
      */
-    public function setAccount($account)
+    public function setAccount(Account $account) : History
     {
         $this->account = $account;
 
@@ -103,9 +103,9 @@ class History
     /**
      * Get account
      *
-     * @return int
+     * @return Account
      */
-    public function getAccount()
+    public function getAccount() : Account
     {
         return $this->account;
     }
@@ -117,7 +117,7 @@ class History
      *
      * @return History
      */
-    public function setAction($action)
+    public function setAction(string $action) : History
     {
         $this->action = $action;
 
@@ -129,7 +129,7 @@ class History
      *
      * @return string
      */
-    public function getAction()
+    public function getAction() : string
     {
         return $this->action;
     }
@@ -141,7 +141,7 @@ class History
      *
      * @return History
      */
-    public function setDetails($details)
+    public function setDetails(string $details) : History
     {
         $this->details = $details;
 
@@ -153,7 +153,7 @@ class History
      *
      * @return string
      */
-    public function getDetails()
+    public function getDetails() : string
     {
         return $this->details;
     }
