@@ -56,6 +56,6 @@ services:
 
     AppBundle\Twig\HeaderExtension:
         arguments:
-            - '@AppBundle\Service\MasterListReader'
+            - '@AppBundle\Service\CachedMasterListReader'
 
         tags: ['twig.extension']

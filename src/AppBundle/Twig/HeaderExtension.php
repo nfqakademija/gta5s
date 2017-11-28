@@ -8,7 +8,7 @@
 
 namespace AppBundle\Twig;
 
-use AppBundle\Service\MasterListReader;
+use AppBundle\Service\CachedMasterListReader;
 use AppBundle\Service\MasterListServerInfo;
 use AppBundle\Service\ServerOfflineException;
 
@@ -17,7 +17,7 @@ class HeaderExtension extends \Twig_Extension
 
     private $currData;
 
-    public function __construct(MasterListReader $masterListReader)
+    public function __construct(CachedMasterListReader $masterListReader)
     {
         try {
             $this->currData = $masterListReader->fetch();
