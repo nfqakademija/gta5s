@@ -36,7 +36,7 @@ class CachedMasterListReader extends MasterListReader
      * @param CurlService $curl
      * @param CacheItemPoolInterface $cacheItemPool
      * @param int $ttl
-     * @param string $cachePrefix
+     * @param string $cacheItemName
      */
     public function __construct(
         string $serverIP,
