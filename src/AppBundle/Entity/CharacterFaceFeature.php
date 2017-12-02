@@ -126,4 +126,3 @@ class CharacterFaceFeature
         return $this->value;
     }
 }
-

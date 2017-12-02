@@ -126,4 +126,3 @@ class CharacterHeadOverlay
         return $this->value;
     }
 }
-

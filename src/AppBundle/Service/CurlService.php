@@ -8,7 +8,6 @@
 
 namespace AppBundle\Service;
 
-
 class CurlService
 {
 
@@ -27,5 +26,4 @@ class CurlService
         //Lets execute call.
         return curl_exec($session);
     }
-
 }

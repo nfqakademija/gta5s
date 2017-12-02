@@ -621,4 +621,3 @@ class Character
         return $this->shoes;
     }
 }
-

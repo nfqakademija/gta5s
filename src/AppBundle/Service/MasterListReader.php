@@ -44,21 +44,23 @@ class MasterListReader
         //Finds out if our server is online.
         if (empty($json)) {
             throw new ServerOfflineException('Failed to connect to RageMP\'s Master List!');
-        } elseif (!array_key_exists($this->serverIP, $data)) {
+        }
+
+        if (!array_key_exists($this->serverIP, $data)) {
             throw new ServerOfflineException(
                 'Could not find announced server with this IP address: ' . $this->serverIP
             );
-        } else {
-            return new MasterListServerInfo(
-                $data->{$this->serverIP}->{'name'},
-                $this->serverIP,
-                $data->{$this->serverIP}->{'gamemode'},
-                $data->{$this->serverIP}->{'url'},
-                $data->{$this->serverIP}->{'lang'},
-                $data->{$this->serverIP}->{'players'},
-                $data->{$this->serverIP}->{'maxplayers'}
-            );
         }
+
+        return new MasterListServerInfo(
+            $data->{$this->serverIP}->{'name'},
+            $this->serverIP,
+            $data->{$this->serverIP}->{'gamemode'},
+            $data->{$this->serverIP}->{'url'},
+            $data->{$this->serverIP}->{'lang'},
+            $data->{$this->serverIP}->{'players'},
+            $data->{$this->serverIP}->{'maxplayers'}
+        );
     }
 
     public function getServerIP() : string
@@ -70,5 +72,4 @@ class MasterListReader
     {
         return $this->curl;
     }
-
 }

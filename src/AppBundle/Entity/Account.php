@@ -119,7 +119,4 @@ class Account extends BaseEmailUser
 
         return $this;
     }
-
-
-
 }

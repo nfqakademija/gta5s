@@ -8,7 +8,6 @@
 
 namespace AppBundle\Service;
 
-
 class MasterListServerInfo
 {
 
@@ -134,5 +133,4 @@ class MasterListServerInfo
     {
         return $this->maxPlayers;
     }
-
 }

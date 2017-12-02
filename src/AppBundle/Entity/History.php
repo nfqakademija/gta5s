@@ -158,4 +158,3 @@ class History
         return $this->details;
     }
 }
-
