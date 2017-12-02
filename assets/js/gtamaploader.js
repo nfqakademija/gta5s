@@ -139,7 +139,7 @@ function initMap() {
         }
     }
 
-    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
     map.mapTypes.set('Atlas', mapAtlas);
     map.mapTypes.set('Satellite', mapSatellite);
