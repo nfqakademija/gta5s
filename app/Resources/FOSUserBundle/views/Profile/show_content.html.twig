@@ -1,0 +1,20 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h4>Vardas: {{  user.getFirstName() }}</h4>
+<h4>Pavarde: {{  user.getLastName() }}</h4>
+
+{% if user.getCharacter() is not null %}
+
+    {% if user.getCharacter().getGender() %}
+        <h4>Lytis: Vyras</h4>
+    {% else %}
+        <h4>Lytis: Moteris</h4>
+    {% endif %}
+    <h4>Pinigai: {{  user.getCharacter().getMoney() }}</h4>
+    <h4>Patirtis: {{  user.getCharacter().getXp() }}</h4>
+
+{% else %}
+
+    <h4>Šis vartotojas dar neturi susikūręs savo paskyros!</h4>
+
+{% endif %}

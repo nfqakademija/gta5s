@@ -8,11 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController extends Controller
 {
+
     /**
      * @param $profile_id
      * @return Response
      *
-     * @Route("/profile/view/{profile_id}")
+     * @Route("/profile/{profile_id}")
      */
     public function viewAction($profile_id) : Response
     {
@@ -20,6 +21,10 @@ class ProfileController extends Controller
                         ->getManager()
                         ->getRepository('AppBundle:Account')
                         ->find($profile_id);
+
+        if (empty($account)) {
+            throw $this->createNotFoundException('Vartotojas nebuvo rastas!');
+        }
 
         return $this->render(
             'Profile/view.html.twig',
