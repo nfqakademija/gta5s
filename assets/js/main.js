@@ -1,5 +1,5 @@
 window.$ = window.jQuery = require("jquery");
 
-require('bootstrap-sass');
+require("bootstrap-sass");
 
-import './gtamaploader';
+import "./reactApp/index";

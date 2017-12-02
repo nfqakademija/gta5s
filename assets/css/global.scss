@@ -300,21 +300,8 @@ footer {
 
 }
 
-//Google Map
+//Google Map Title
 
-#map,
-#map2 {
-  height: 500px;
-  width:100%;
-};
-@media screen and (max-width: 767px) {
-  #map {
-    height: 350px;
-  };
-}
-img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[href^="http://maps.google.com/maps"]{
-  display:none !important;
-};
 .map-title-wrap {
   background: $color-pinkdark;
 };
@@ -323,6 +310,7 @@ img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[hr
   margin: 0;
   padding:15px;
 };
+
 
 //Auth forms
 
