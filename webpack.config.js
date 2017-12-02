@@ -1,34 +1,70 @@
-// webpack.config.js
-var Encore = require('@symfony/webpack-encore');
+const webpack = require("webpack");
+const path = require("path");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-Encore
-// directory where all compiled assets will be stored
-    .setOutputPath('web/build/')
-
-    // what's the public path to this directory (relative to your project's document root dir)
-    .setPublicPath('/build')
-
-    // empty the outputPath dir before each build
-    .cleanupOutputBeforeBuild()
-
-    // will output as web/build/app.js
-    .addEntry('app', './assets/js/main.js')
-    .addEntry('gtamaploader', './assets/js/gtamaploader.js')
-
-    // will output as web/build/global.css
-    .addStyleEntry('global', './assets/css/global.scss')
-
-    // allow sass/scss files to be processed
-    .enableSassLoader()
-
-    // allow legacy applications to use $/jQuery as a global variable
-    .autoProvidejQuery()
-
-    .enableSourceMaps(!Encore.isProduction())
-
-// create hashed filenames (e.g. app.abc123.css)
-// .enableVersioning()
-;
-
-// export the final configuration
-module.exports = Encore.getWebpackConfig();
+module.exports = {
+    devtool: "eval-source-map",
+    entry: [
+        path.join(__dirname, "assets/css/global.scss"),
+        path.join(__dirname, "assets/js/main.js")
+    ],
+    output: {
+        path: path.join(__dirname, "web/assets"),
+        filename: "app.js",
+        publicPath: "/"
+    },
+    plugins: [
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
+        new ExtractTextPlugin("css/styles.css"),
+        new OptimizeCssAssetsPlugin()
+    ],
+    module: {
+        loaders: [{
+            test: /\.js$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/
+        }],
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\.(jpe?g|png|gif)$/i,   //to support eg. background-image property
+                loader:"file-loader",
+                query:{
+                    name:'[name].[ext]',
+                    outputPath:'../assets/images/'
+                    //the images will be emmited to ./web/assets/images/ folder
+                    //the images will be put in the DOM <style> tag as eg. background: url(...);
+                }
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,    //to support @font-face rule
+                loader: "url-loader",
+                query:{
+                    limit:'10000',
+                    name:'[name]/[name].[ext]',
+                    outputPath:'../assets/fonts/'
+                    //the fonts will be emmited to ./web/assets/fonts/ folder
+                    //the fonts will be put in the DOM <style> tag as eg. @font-face{ src:url(...); }
+                }
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: ["css-loader","sass-loader"]
+                })
+            }
+        ]
+    }
+}

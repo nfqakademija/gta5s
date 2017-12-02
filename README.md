@@ -1,11 +1,8 @@
 GTA 5 Server Website
 =====
 
-To compile assets:
-$npm run dev
+To install npm packages:<br>
+$npm install
 
-To compile automatically while coding:
-$npm run dev:watch
-
-To compile and minify, optimize:
-$npm run prod
+To compile styles and js (automatically watches):<br>
+$npm start
