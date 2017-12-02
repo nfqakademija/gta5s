@@ -37,6 +37,4 @@ class HeaderExtension extends \Twig_Extension
     {
         return $this->currData;
     }
-
-
 }

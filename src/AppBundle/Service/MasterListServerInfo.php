@@ -134,5 +134,4 @@ class MasterListServerInfo
     {
         return $this->maxPlayers;
     }
-
 }

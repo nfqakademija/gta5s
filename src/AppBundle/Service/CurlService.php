@@ -27,5 +27,4 @@ class CurlService
         //Lets execute call.
         return curl_exec($session);
     }
-
 }

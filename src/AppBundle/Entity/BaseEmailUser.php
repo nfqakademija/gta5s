@@ -32,5 +32,4 @@ class BaseEmailUser extends BaseUser
 
         return $this;
     }
-
 }
