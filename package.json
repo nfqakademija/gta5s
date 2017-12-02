@@ -1,4 +1,11 @@
 {
+  "name": "gta5server",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "node_modules/.bin/encore dev",
+    "prod": "node_modules/.bin/encore prod",
+    "dev:watch": "npm run dev -- --watch"
+  },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.17.0",
     "bootstrap-sass": "^3.3.7",
