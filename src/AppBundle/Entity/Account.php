@@ -53,6 +53,11 @@ class Account extends BaseEmailUser
      */
     private $character;
 
+    /**
+     * @ORM\Column(type="string", length=512)
+     */
+    private $bio;
+
     public function __construct()
     {
         parent::__construct();
@@ -116,6 +121,26 @@ class Account extends BaseEmailUser
     public function setCharacter($character) : Account
     {
         $this->character = $character;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBio() : string
+    {
+        return $this->bio;
+    }
+
+    /**
+     * @param string $bio
+     *
+     * @return $this
+     */
+    public function setBio(string $bio)
+    {
+        $this->bio = $bio;
 
         return $this;
     }
