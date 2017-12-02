@@ -23,5 +23,4 @@ class RegistrationFormType extends BaseFormType
         $builder->add('firstName');
         $builder->add('lastName');
     }
-
 }
