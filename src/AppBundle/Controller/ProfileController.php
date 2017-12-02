@@ -10,6 +10,15 @@ class ProfileController extends Controller
 {
 
     /**
+     * @Route ("/profile/edit")
+     */
+    public function editAction()
+    {
+
+        return $this->forward('FOSUserBundle:Profile:edit');
+    }
+
+    /**
      * @param $profile_id
      * @return Response
      *
@@ -27,9 +36,9 @@ class ProfileController extends Controller
         }
 
         return $this->render(
-            'Profile/view.html.twig',
+            '@FOSUser/Profile/show.html.twig',
             [
-                'curr_account' => $account
+                'user' => $account
             ]
         );
     }
