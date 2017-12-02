@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Profile:view{% endblock %}
+
+{% block body %}
+
+    <h4>Vardas: {{  curr_account.getFirstName() }}</h4>
+    <h4>Pavarde: {{  curr_account.getLastName() }}</h4>
+
+    {% if curr_account.getCharacter() is not null %}
+
+        {% if curr_account.getCharacter().getGender() %}
+            <h4>Lytis: Vyras</h4>
+        {% else %}
+            <h4>Lytis: Moteris</h4>
+        {% endif %}
+        <h4>Pinigai: {{  curr_account.getCharacter().getMoney() }}</h4>
+        <h4>Patirtis: {{  curr_account.getCharacter().getXp() }}</h4>
+
+    {% else %}
+
+        <h4>Šis vartotojas dar neturi susikūręs savo paskyros!</h4>
+
+    {% endif %}
+
+
+{% endblock %}
