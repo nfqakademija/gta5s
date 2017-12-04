@@ -11,7 +11,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-define('DEFAULT_AVATAR_NAME', 'default_avatar.png');
+define('DEFAULT_AVATAR_DIR', 'avatars/');
+define('DEFAULT_AVATAR_NAME', DEFAULT_AVATAR_DIR . 'default.png');
 
 /**
  * This entity is responsible for storing user's data,

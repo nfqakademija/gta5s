@@ -1,5 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+<img src="{{ asset(user.getAvatar().generateFileURL()) }}"/>
 <h4>Vardas: {{  user.getFirstName() }}</h4>
 <h4>Pavarde: {{  user.getLastName() }}</h4>
 <h4>Biografija: {{ user.getBio() }}</h4>

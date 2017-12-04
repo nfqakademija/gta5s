@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-define('IMAGE_STORE_PATH', 'uploads/images/');
+define('IMAGE_STORE_PATH', 'assets/images/');
 
 /**
  * Image
