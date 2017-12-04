@@ -11,6 +11,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+define('DEFAULT_AVATAR_NAME', 'default_avatar.png');
+
 /**
  * This entity is responsible for storing user's data,
  * that is accessible from server and website.
@@ -57,6 +59,12 @@ class Account extends BaseEmailUser
      * @ORM\Column(type="string", length=512)
      */
     private $bio;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id", nullable=true)
+     */
+    private $avatar;
 
     public function __construct()
     {
@@ -142,6 +150,30 @@ class Account extends BaseEmailUser
     public function setBio(string $bio)
     {
         $this->bio = $bio;
+
+        return $this;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getAvatar() : Image
+    {
+        if ($this->avatar === null) {
+            return (new Image())->setFileName(DEFAULT_AVATAR_NAME);
+        }
+
+        return $this->avatar;
+    }
+
+    /**
+     * @param Image $avatar
+     *
+     * @return Account
+     */
+    public function setAvatar(Image $avatar) : Account
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
