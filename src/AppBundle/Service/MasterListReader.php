@@ -42,7 +42,7 @@ class MasterListReader
         $data = json_decode($json);
 
         //Finds out if our server is online.
-        if (empty($json)) {
+        if (empty($data)) {
             throw new ServerOfflineException('Failed to connect to RageMP\'s Master List!');
         }
 
