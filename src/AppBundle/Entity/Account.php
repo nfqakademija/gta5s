@@ -63,6 +63,7 @@ class Account extends BaseEmailUser
         parent::__construct();
 
         $this->roles = array('ROLE_USER');
+        $this->bio = '';
     }
 
     /**
