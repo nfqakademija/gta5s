@@ -2,7 +2,7 @@ import React from "react";
 import {render} from "react-dom";
 import configureStore from "./store/configureStore";
 import {Provider} from "react-redux";
-import Map from "./components/Map";
+import Map from "./components/MapComponent";
 import "./styles/styles.css";
 
 let store = configureStore();
