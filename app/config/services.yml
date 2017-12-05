@@ -37,16 +37,21 @@ services:
     AppBundle\Service\CurlService:
         public: true
 
-    AppBundle\Service\MasterListReader:
+    AppBundle\Service\MasterListParser:
         public: true
         arguments:
             - '%gta_server_ip%'
+
+    AppBundle\Service\MasterListReader:
+        public: true
+        arguments:
+            - '@AppBundle\Service\MasterListParser'
             - '@AppBundle\Service\CurlService'
 
     AppBundle\Service\CachedMasterListReader:
         public: true
         arguments:
-            - '%gta_server_ip%'
+            - '@AppBundle\Service\MasterListParser'
             - '@AppBundle\Service\CurlService'
             - '@cache.system'
             - 5

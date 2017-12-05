@@ -39,13 +39,13 @@ class CachedMasterListReader extends MasterListReader
      * @param string $cacheItemName
      */
     public function __construct(
-        string $serverIP,
+        MasterListParser $parser,
         CurlService $curl,
         CacheItemPoolInterface $cacheItemPool,
         int $ttl = 60,
         string $cacheItemName = 'RageMP_MLR'
     ) {
-        parent::__construct($serverIP, $curl);
+        parent::__construct($parser, $curl);
 
         $this->cacheItemPool = $cacheItemPool;
         $this->ttl = $ttl;

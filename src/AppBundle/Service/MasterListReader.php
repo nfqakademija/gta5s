@@ -10,22 +10,21 @@ namespace AppBundle\Service;
 
 class MasterListReader
 {
-
     /**
-     * This variable stores IP, on which Grang Theft Auto V Server is launched.
-     *
-     * @var string
+     * @var MasterListParser
      */
-    private $serverIP;
+    private $parser;
 
     /**
      * @var CurlService
      */
     private $curl;
 
-    public function __construct($serverIP, $curl)
-    {
-        $this->serverIP = $serverIP;
+    public function __construct(
+        MasterListParser $parser,
+        CurlService $curl
+    ) {
+        $this->parser = $parser;
         $this->curl = $curl;
     }
 
@@ -38,34 +37,17 @@ class MasterListReader
         //Fetches RageMP's master list json.
         $json = $this->curl->callURL('https://cdn.rage.mp/master/');
 
-        //Parses fetched json file
-        $data = json_decode($json);
-
         //Finds out if our server is online.
-        if (empty($data)) {
+        if (empty($json)) {
             throw new ServerOfflineException('Failed to connect to RageMP\'s Master List!');
         }
 
-        if (!array_key_exists($this->serverIP, $data)) {
-            throw new ServerOfflineException(
-                'Could not find announced server with this IP address: ' . $this->serverIP
-            );
-        }
-
-        return new MasterListServerInfo(
-            $data->{$this->serverIP}->{'name'},
-            $this->serverIP,
-            $data->{$this->serverIP}->{'gamemode'},
-            $data->{$this->serverIP}->{'url'},
-            $data->{$this->serverIP}->{'lang'},
-            $data->{$this->serverIP}->{'players'},
-            $data->{$this->serverIP}->{'maxplayers'}
-        );
+        return $this->parser->parse($json);
     }
 
-    public function getServerIP() : string
+    public function getParser() : MasterListParser
     {
-        return $this->serverIP;
+        return $this->parser;
     }
 
     public function getCurlService() : CurlService
