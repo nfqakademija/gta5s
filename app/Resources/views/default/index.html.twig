@@ -39,6 +39,9 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        var urlContainer = {"url": "{{ globalURL }}"};
+    </script>
     {{ parent() }}
     <script>
         // Load the IFrame Player API code asynchronously.

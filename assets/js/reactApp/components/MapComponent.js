@@ -7,6 +7,7 @@ import * as vars from "../common/variables";
 
 function initMap() {
     vars.gMap = new Map();
+    vars.gMap.siteURL = vars.url;
     vars.gMap.initMap();
 }
 window.initMap = initMap;
