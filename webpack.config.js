@@ -7,11 +7,11 @@ module.exports = {
     devtool: "eval-source-map",
     entry: [
         path.join(__dirname, "assets/css/global.scss"),
-        path.join(__dirname, "assets/js/main.js")
+        path.join(__dirname, "assets/js/main.js"),
     ],
     output: {
         path: path.join(__dirname, "web/assets"),
-        filename: "app.js",
+        filename: 'app.js',
         publicPath: "/"
     },
     plugins: [

@@ -33,6 +33,9 @@ function Map() {
             "position": [2.363882, 15.044922]
         }
     ];
+    this.convertedJson = function(json) {
+        return Object.entries(json);
+    };
     this.projection = {
         fromLatLngToPoint: function(latLng) {
             return new google.maps.Point(
@@ -194,22 +197,18 @@ function Map() {
                     break;
             }
         });
-
-        (function loopMarkers() {
-            self.addMarkers();
-            setTimeout(loopMarkers, 15000);
-        })();
     };
-    this.addMarkers = function() {
+    this.addMarkers = function(json) {
         if (this.markers.length > 0) {
             this.deleteMarkers();
         }
 
-        this.positions.forEach((item) => {
-            const contentStrings = item.firstName+' '+item.lastName;
+        const convertedJson = this.convertedJson(json);
+        convertedJson.forEach((item) => {
+            const contentStrings = item[1].firstName + ' ' + item[1].lastName;
 
             const marker = new google.maps.Marker({
-                position: this.convertXYtoLatLng(item.position[0], item.position[1]),
+                position: this.convertXYtoLatLng(item[1].position.x, item[1].position.y),
                 icon: this.image
             });
 
