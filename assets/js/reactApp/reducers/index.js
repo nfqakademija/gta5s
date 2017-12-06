@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
-import markers from "./markersReducer";
+import markersJson from "./markersReducer";
 
 const rootReducer = combineReducers({
-    markers
+    markersJson
 });
 export default rootReducer;
