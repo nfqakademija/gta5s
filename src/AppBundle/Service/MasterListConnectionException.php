@@ -8,7 +8,6 @@
 
 namespace AppBundle\Service;
 
-
 class MasterListConnectionException extends \Exception
 {
 

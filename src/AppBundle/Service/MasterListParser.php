@@ -17,7 +17,9 @@ class MasterListParser
     private $serverIP;
 
     /**
-     * MasterListParser constructor.
+     * MasterListParser constructor.\
+     *
+     * @param string $serverIP
      */
     public function __construct(
         string $serverIP
@@ -27,7 +29,7 @@ class MasterListParser
 
     /**
      * @throws ServerOfflineException
-     * @param string $data
+     * @param string $json
      * @return MasterListServerInfo
      */
     public function parse(string $json) : MasterListServerInfo
@@ -51,7 +53,6 @@ class MasterListParser
             $data->{$this->serverIP}->{'players'},
             $data->{$this->serverIP}->{'maxplayers'}
         );
-
     }
 
     /**
