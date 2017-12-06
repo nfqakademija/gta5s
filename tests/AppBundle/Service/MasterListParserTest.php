@@ -27,4 +27,29 @@ class MasterListParserTest extends TestCase
             }
         ');
     }
+
+    public function testOnlineParse()
+    {
+        $parser = new MasterListParser('94.130.53.38:22005');
+
+        $data = $parser->parse('
+            {
+                "94.130.53.38:22005": {
+                    "name":"Gud server",
+                    "gamemode":"freeroam",
+                    "url":"rage.mp",
+                    "lang":"en",
+                    "players":2,
+                    "maxplayers":500
+                }
+            }
+        ');
+
+        $this->assertEquals('Gud server', $data->getName());
+        $this->assertEquals('freeroam', $data->getGamemodeName());
+        $this->assertEquals('rage.mp', $data->getWebsiteUrl());
+        $this->assertEquals('en', $data->getLanguageName());
+        $this->assertEquals(2, $data->getCurrentPlayerCount());
+        $this->assertEquals(500, $data->getMaximumPlayerCount());
+    }
 }
