@@ -3,12 +3,11 @@ import {connect} from "react-redux";
 import * as markersActions from "../actions/markersActions";
 import PropTypes from "prop-types";
 import Map from "../classes/Map";
-
-let gMap;
+import * as vars from "../common/variables";
 
 function initMap() {
-    gMap = new Map();
-    gMap.initMap();
+    vars.gMap = new Map();
+    vars.gMap.initMap();
 }
 window.initMap = initMap;
 
@@ -21,9 +20,9 @@ class MapComponent extends React.Component
         const self = this;
         window.addEventListener("load", function (event) {
             (function loadMarkers() {
-                gMap.addMarkers(self.props.markersJson.players);
+                vars.gMap.addMarkers(self.props.markersJson.players);
                 self.props.dispatch(markersActions.loadMarkersJson());
-                setTimeout(loadMarkers, 5000)
+                setTimeout(loadMarkers, vars.timeout);
             })();
         });
     }
