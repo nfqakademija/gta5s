@@ -1,5 +1,5 @@
 const siteURL = window.location.href;
-let markers = [];
+let markers = {};
 let googleMap = {};
 
 window.initMap = initMap;
@@ -236,7 +236,6 @@ function addMarkers() {
 
         markers.push(marker);
     })
-    console.log(markers);
 }
 
 function deleteMarkers() {
@@ -256,7 +255,7 @@ import PropTypes from "prop-types";
 class MapComponent extends React.Component
 {
     componentWillMount() {
-        this.props.dispatch(markersActions.loadMarkers());
+        this.props.dispatch(markersActions.loadMarkersJson());
     }
 
     render() {
@@ -268,7 +267,7 @@ class MapComponent extends React.Component
 }
 
 MapComponent.propTypes = {
-    markers: PropTypes.array.isRequired
+    markers: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
