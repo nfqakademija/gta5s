@@ -160,11 +160,19 @@ class Account extends BaseEmailUser
      */
     public function getAvatar() : Image
     {
-        if ($this->avatar === null) {
+        if ($this->isUsingDefaultAvatar()) {
             return (new Image())->setFileName(DEFAULT_AVATAR_NAME);
         }
 
         return $this->avatar;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUsingDefaultAvatar() : bool
+    {
+        return $this->avatar === null;
     }
 
     /**
