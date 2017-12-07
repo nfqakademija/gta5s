@@ -92,8 +92,15 @@ fos_user:
 #https://github.com/1up-lab/OneupUploaderBundle/blob/master/Resources/doc/index.md
 oneup_uploader:
     mappings:
-        gallery:
+        avatars:
+            storage:
+                directory: assets/images/avatars
             frontend: dropzone
+            allowed_mimetypes:
+                - "image/gif"
+                - "image/jpeg"
+                - "image/jpg"
+                - "image/png"
 
 #Knp paginator bundle
 knp_paginator:
