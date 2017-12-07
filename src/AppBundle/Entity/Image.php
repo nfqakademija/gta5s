@@ -4,8 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-define('IMAGE_STORE_PATH', 'assets/images/');
-
 /**
  * Image
  *
@@ -29,7 +27,6 @@ class Image
      * @ORM\Column(name="name", type="string", length=64, unique=true)
      */
     private $name;
-
 
     /**
      * Get id
@@ -65,13 +62,4 @@ class Image
         return $this->name;
     }
 
-    /**
-     * Generates URL
-     *
-     * @return string
-     */
-    public function generateFileURL() : string
-    {
-        return IMAGE_STORE_PATH . $this->getFileName();
-    }
 }

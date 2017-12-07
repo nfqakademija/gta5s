@@ -2,7 +2,7 @@
     {% trans_default_domain 'FOSUserBundle' %}
 
     <div class="dashboard-profile-title">
-        <img src="{{ asset(user.getAvatar().generateFileURL()) }}"/>
+        <img src="{{ asset(user.getAvatar().getFileName()) }}"/>
         <h2 class="dashboard-name">{{  user.getFirstName() }} {{  user.getLastName() }}</h2>
     </div>
 
