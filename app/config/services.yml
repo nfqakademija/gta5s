@@ -62,4 +62,11 @@ services:
     AppBundle\Twig\HeaderExtension:
         arguments:
             - '@AppBundle\Service\CachedMasterListReader'
-        tags: ['twig.extension']
+        tags:
+            - 'twig.extension'
+
+    AppBundle\EventListener\AvatarUploadListener:
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
