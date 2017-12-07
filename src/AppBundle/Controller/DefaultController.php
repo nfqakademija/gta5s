@@ -30,7 +30,9 @@ class DefaultController extends Controller
     public function topaiAction(Request $request)
     {
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT h FROM AppBundle:History h";
+        $dql   = "SELECT a, c
+            FROM AppBundle:Account a
+            JOIN a.character c";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');

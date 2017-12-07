@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends "@FOSUser/layout.html.twig" %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -10,19 +10,18 @@
         {#<div class="margin-top-average padding-right-0 dashboard-nav-wrap">#}
             <nav class="dashboard-nav">
                 <ul>
-                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <li><a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user-circle" aria-hidden="true"></i>
                             Profilis</a></li>
-                    <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
-                            Nariai</a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            Žinutės</a></li>
+                    <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square-o " aria-hidden="true"></i>
+                            Redaguoti</a></li>
                 </ul>
             </nav>
         {#</div>#}
         {#<div class="margin-top-average padding-left-0 dashboard-item-box-wrapper-wrap">#}
             <div class="dashboard-item-box-wrap">
                 <div class="dashboard-item-box">
-
+                    {% block fos_user_content %}
+                    {% endblock %}
                 </div>
             </div>
         {#</div>#}

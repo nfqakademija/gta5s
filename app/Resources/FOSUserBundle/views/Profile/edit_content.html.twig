@@ -9,14 +9,21 @@
 
 <hr/>
 
-<b>Keisti avatarą</b>
-<form
-    action="{{ oneup_uploader_endpoint('avatars') }}"
-    class="dropzone"
-    style="
-        width:200px;
-        height:200px;
-        border:4px dashed black
-    "
->
-</form>
+<div class="profile-avatar-change">
+    <p>Keisti avatarą</p>
+        <div class="col-sm-6">
+            <form
+                action="{{ oneup_uploader_endpoint('avatars') }}"
+                class="dropzone"
+                style="
+                    width:200px;
+                    height:200px;
+                    border:4px dashed black
+                ">
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <img src="{{ asset(app.user.getAvatar().generateFileURL()) }}"/>
+        </div>
+
+</div>

@@ -1,22 +1,41 @@
-{% trans_default_domain 'FOSUserBundle' %}
 
-<img src="{{ asset(user.getAvatar().generateFileURL()) }}"/>
-<h4>Vardas: {{  user.getFirstName() }}</h4>
-<h4>Pavarde: {{  user.getLastName() }}</h4>
-<h4>Biografija: {{ user.getBio() }}</h4>
+    {% trans_default_domain 'FOSUserBundle' %}
 
-{% if user.getCharacter() is not null %}
+    <div class="dashboard-profile-title">
+        <img src="{{ asset(user.getAvatar().generateFileURL()) }}"/>
+        <h2 class="dashboard-name">{{  user.getFirstName() }} {{  user.getLastName() }}</h2>
+    </div>
 
-    {% if user.getCharacter().getGender() %}
-        <h4>Lytis: Vyras</h4>
-    {% else %}
-        <h4>Lytis: Moteris</h4>
-    {% endif %}
-    <h4>Pinigai: {{  user.getCharacter().getMoney() }}</h4>
-    <h4>Patirtis: {{  user.getCharacter().getXp() }}</h4>
+    <div class="dashboard-clear">
+        <p class="dashboard-bio">Biografija: {{ user.getBio() }}</p>
 
-{% else %}
+        {% if user.getCharacter() is not null %}
 
-    <h4>Šis vartotojas dar neturi susikūręs savo paskyros!</h4>
+            <table class="table">
+                {% if user.getCharacter().getGender() %}
+                    <tr>
+                        <td>Lytis:</td>
+                        <td>Vyras</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Lytis:</td>
+                        <td>Moteris</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td>Pinigai:</td>
+                    <td>{{  user.getCharacter().getMoney() }}</td>
+                </tr>
+                <tr>
+                    <td>Patirtis:</td>
+                    <td>{{  user.getCharacter().getXp() }}</td>
+                </tr>
+            </table>
 
-{% endif %}
+        {% else %}
+
+            <h5>Šis vartotojas dar neturi susikūręs savo paskyros!</h5>
+
+        {% endif %}
+    </div>

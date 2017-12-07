@@ -28,6 +28,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 body {
   max-width: 1500px;
+  margin: auto;
 }
 
 flex {
@@ -242,6 +243,7 @@ body {
   flex: 1 0 auto;
 }
 footer {
+  z-index: 1;
   background: $color-pinkdark;
   color: $color-lightpink;
 }
@@ -249,57 +251,6 @@ footer {
   padding: 20px;
 }
 
-
-//Dashboard Layout
-
-.dashboard-nav ul {
-  list-style: none;
-  padding: 0;
-}
-.dashboard-nav ul li a,
-.dashboard-nav ul li a:visited {
-  width: 100%;
-  padding: 10px;
-  background: $color-pinkblack;
-  color: white;
-  text-transform: uppercase;
-  display: block;
-}
-.dashboard-nav ul li a:hover,
-.dashboard-nav ul li a:active,
-.dashboard-nav ul li a:focus {
-  background: $color-grey;
-  color: $color-goldbrown;
-  text-decoration: none;
-}
-.dashboard-nav {
-  width: 150px;
-  background: $color-pinkblack;
-}
-.dashboard-item-box-wrap {
-  width: 100%;
-}
-.dashboard-item-box {
-  padding:200px 10px;
-  background: $color-grey;
-}
-.row-parent {
-  overflow: hidden;
-  position: relative;
-
-}
-
-.flex-dashboard {
-  display: flex;
-  //flex-wrap: wrap;
-}
-
-.dashboard-nav-wrap {
-}
-
-.dashboard-item-box-wrapper-wrap {
-
-}
 
 //Google Map Title
 
@@ -341,4 +292,142 @@ footer {
 .auth-button:focus {
   background: $color-pinkblack;
   border-color: $color-pinkblack;
+}
+
+//Profile
+//Dashboard Layout
+
+.flex-dashboard {
+  display: flex;
+  //flex-wrap: wrap;
+}
+.dashboard-nav ul {
+  list-style: none;
+  padding: 0;
+}
+.dashboard-nav ul li a,
+.dashboard-nav ul li a:visited {
+  width: 100%;
+  padding: 10px;
+  background: $color-pinkblack;
+  color: white;
+  text-transform: uppercase;
+  display: block;
+}
+.dashboard-nav ul li a:hover,
+.dashboard-nav ul li a:active,
+.dashboard-nav ul li a:focus {
+  background: $color-grey;
+  color: $color-goldbrown;
+  text-decoration: none;
+}
+.dashboard-nav {
+  width: 150px;
+  background: $color-pinkblack;
+  position: absolute;
+  top:92px;
+  bottom: 0;
+  left: 0;
+}
+.dashboard-item-box-wrap {
+  margin-left: 150px;
+  width: 100%;
+}
+.dashboard-item-box {
+  text-align: center;
+  padding:2em 1em;
+  background: $color-grey;
+  max-width: 600px;
+  margin: auto;
+  color: $color-pinkblack;
+}
+.dashboard-item-box .dashboard-name {
+  float:right;
+  display: inline;
+}
+.dashboard-profile-title {
+  margin: auto;
+  overflow: hidden;
+  display: inline-block;
+}
+.dashboard-clear {
+  text-align: left;
+  clear: both;
+}
+.dashboard-item-box img {
+  width: 70px;
+  height: 70px;
+  float:right;
+  margin-left: 2em;
+}
+.row-parent {
+  overflow: hidden;
+  position: relative;
+}
+.dashboard-bio {
+  margin: 1em 0;
+}
+.profile-avatar-change p {
+  font-weight: bold;
+}
+.profile-avatar-change img {
+  width:200px;
+  height:200px;
+  float: none;
+  margin: auto;
+}
+.profile-avatar-change form {
+  display: inline-block;
+}
+
+@media screen and (max-width: 767px) {
+  .flex-dashboard {
+    display: block;
+  }
+  .dashboard-nav ul li a,
+  .dashboard-nav ul li a:visited {
+    text-align: center;
+  }
+  .dashboard-nav {
+    width: 100%;
+    position: inherit;
+  }
+  .dashboard-item-box-wrap {
+    margin-left: 0px;
+    width: 100%;
+  }
+  .profile-avatar-change img,
+  .profile-avatar-change form  {
+    margin: auto;
+    margin-bottom: 2em;
+  }
+}
+
+
+//Topai
+
+.topai-wrapper {
+  margin: 2em 1em;
+}
+.topai-wrapper h1 {
+  margin-bottom: 1em;
+  text-align: center;
+  color: $color-pinkblack;
+}
+.navigation span {
+  text-align: center;
+}
+.navigation span {
+  padding: 1em;
+  color: $color-pinkblack
+}
+.navigation span a,
+.navigation span a:visited {
+  color: $color-goldbrown;
+  text-decoration: none;
+}
+.navigation span a:hover,
+.navigation span a:active {
+  color: $color-goldbrown;
+  text-decoration: underline;
 }

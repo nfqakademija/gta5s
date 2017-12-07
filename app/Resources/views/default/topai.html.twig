@@ -3,30 +3,28 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row">
-             total items count
-            <div class="count">
-                {{ pagination.getTotalItemCount }}
-            </div>
-            <table>
-                <tr>
-                     sorting of properties based on query components
-                    <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
-                    <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}</th>
-                    <th>{{ knp_pagination_sortable(pagination, 'Release', ['a.date', 'a.time']) }}</th>
-                </tr>
+            <div class="col-xs-12">
+                <div class="topai-wrapper">
+                    <h1>Top Žaidėjai</h1>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Žaidėjas</th>
+                            <th>Patirtis</th>
+                            <th>Pinigai</th>
+                        </tr>
 
-                 table body
-                {% for article in pagination %}
-                    <tr {% if loop.index is odd %}class="color"{% endif %}>
-                        <td>{{ article.id }}</td>
-                        <td>{{ article.time | date('Y-m-d') }}</td>
-                        <td>{{ article.action }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-             display navigation
-            <div class="navigation">
-                {{ knp_pagination_render(pagination) }}
+                        {% for item in pagination %}
+                            <tr>
+                                <td>{{ item.firstName }} {{ item.lastName }}</td>
+                                <td>{{ item.character.xp }}</td>
+                                <td>{{ item.character.money }}</td
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

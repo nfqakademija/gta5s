@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
 
     /**
-     * @Route ("/profile/edit")
+     * @Route ("/profile/edit", name="profile-edit")
      */
     public function editAction()
     {
@@ -22,7 +22,7 @@ class ProfileController extends Controller
      * @param $profile_id
      * @return Response
      *
-     * @Route("/profile/{profile_id}")
+     * @Route("/profile/{profile_id}", name="profile")
      */
     public function viewAction($profile_id) : Response
     {
