@@ -55,8 +55,7 @@ class AvatarUploadListener
         $em->flush();
 
         $response = $event->getResponse();
-        $response['success'] = false;
-        $response['dbg'] = "h";
+        $response['success'] = true;
         return $response;
     }
 }
