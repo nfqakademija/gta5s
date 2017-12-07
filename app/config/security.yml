@@ -4,7 +4,7 @@ security:
 
     # We are using bcrypt, because in server i also use it.
     encoders:
-        FOS\UserBundle\Model\UserInterface: bcrypt
+        FOS\UserBundle\Model\UserInterface: md5
 
     role_hierarchy:
         ROLE_MODERATOR: ROLE_USER
