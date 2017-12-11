@@ -168,7 +168,8 @@ function Map() {
             x: x,
             y: y
         };
-    }
+    };
+    this.markerListenerCallback = function() {console.log(marker.user);};
 
     this.initMap = function() {
         this.mapAtlas.projection = this.projection;
@@ -209,21 +210,15 @@ function Map() {
 
             const marker = new google.maps.Marker({
                 position: this.convertXYtoLatLng(item[1].position.x, item[1].position.y),
-                icon: this.image
+                icon: this.image,
+                user: item[1].firstName + ' ' + item[1].lastName,
+                open: false
             });
 
             marker.setMap(this.googleMap);
 
-            const infowindow = new google.maps.InfoWindow({
-                content: "<div>;)</div>"
-            });
-
-            marker.addListener("click", () => {
-                infowindow.open(this.googleMap, marker);
-            });
-
             this.markers.push(marker);
-        })
+        });
     };
     this.deleteMarkers = function() {
         this.markers.forEach(marker => {

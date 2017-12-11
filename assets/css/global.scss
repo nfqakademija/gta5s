@@ -197,6 +197,9 @@ a:focus {
   }
 }
 
+.mode-link {
+  color: $color-linkpink;
+}
 .how-to-box > div:first-of-type {
   background-color: white;
   color: $color-goldbrown;
@@ -262,7 +265,42 @@ footer {
   margin: 0;
   padding:15px;
 };
-
+.map-user-wrap {
+  background: $color-pinkdark;
+  padding: .5em 2em;
+};
+.map-user-wrap div {
+  background: $color-pinkblack;
+  color: $color-grey;
+  padding:5px 10px;
+};
+.map-user-wrap p {
+  display: inline;
+};
+.map-user-x  {
+  float: right;
+  display: inline;
+  color: $color-pinkblack;
+  background: $color-pinkorange;
+  margin-right: -10px;
+  margin-top: -5px;
+  padding: 5px 10px;
+};
+.map-user-x:hover {
+  font-weight: bold;
+  background: $color-grey;
+}
+.map-user-wrap a,
+.map-user-wrap a:visited {
+  margin-left: 1em;
+  color: $color-pinkorange;
+};
+.map-user-wrap a:hover,
+.map-user-wrap a:active,
+.map-user-wrap a:focus {
+  text-decoration: none;
+  color: $color-lightyellow;
+};
 
 //Auth forms
 

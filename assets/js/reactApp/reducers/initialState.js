@@ -1,3 +1,4 @@
 export default {
-    markersJson: {}
+    markersJson: {},
+    activeUser: {}
 }
