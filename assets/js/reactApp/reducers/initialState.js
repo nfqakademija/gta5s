@@ -1,4 +1,4 @@
 export default {
     markersJson: {},
-    activeUser: {"open": false, "user": ""}
+    activeUser: {"open": false, "user": "", "user_id": ""}
 }

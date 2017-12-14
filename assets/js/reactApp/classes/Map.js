@@ -206,12 +206,11 @@ function Map() {
 
         const convertedJson = this.convertedJson(json);
         convertedJson.forEach((item) => {
-            const contentStrings = item[1].firstName + ' ' + item[1].lastName;
-
             const marker = new google.maps.Marker({
                 position: this.convertXYtoLatLng(item[1].position.x, item[1].position.y),
                 icon: this.image,
-                user: item[1].firstName + ' ' + item[1].lastName
+                user: item[1].firstName + ' ' + item[1].lastName,
+                user_id: Number(item[0].substring(2))
             });
 
             marker.setMap(this.googleMap);

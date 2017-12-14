@@ -273,6 +273,12 @@ footer {
   background: $color-pinkblack;
   color: $color-grey;
   padding:5px 10px;
+  height: auto;
+};
+.map-user-wrap.false > div {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
 };
 .map-user-wrap p {
   display: inline;
@@ -304,11 +310,7 @@ footer {
   text-decoration: none;
   color: $color-lightyellow;
 };
-.map-user-wrap.false > div {
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-};
+
 //Auth forms
 
 .form-wrap {

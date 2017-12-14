@@ -16,6 +16,11 @@ window.initMap = initMap;
 
 class MapComponent extends React.Component
 {
+    constructor(props, context) {
+        super(props, context);
+
+        this.closeUser = this.closeUser.bind(this);
+    }
     addMarkerListeners() {
         vars.gMap.markers.forEach((marker) => {
             marker.addListener("click", () => {
@@ -41,24 +46,24 @@ class MapComponent extends React.Component
     }
 
     shouldComponentUpdate(nextProps) {
-        console.log(nextProps);
         if (JSON.stringify(this.props.activeUser) !== JSON.stringify(nextProps.activeUser)) {
-            console.log(1);
             return true;
         }
         if (JSON.stringify(this.props.markersJson) !== JSON.stringify(nextProps.markersJson)) {
-            console.log(2);
             return true;
         }
-        console.log(3);
         return false;
     }
 
-   render() {
+    closeUser() {
+        this.props.dispatch(usersActions.loadUser({"closeUser": true}, this.props.activeUser));
+    }
+
+    render() {
         const {activeUser} = this.props;
         return(
             <div>
-                <UserComponent activeUser={activeUser}/>
+                <UserComponent activeUser={activeUser} closeUser={this.closeUser} />
                 <div id="react-map"></div>
             </div>
         );
