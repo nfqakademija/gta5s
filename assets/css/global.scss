@@ -277,6 +277,9 @@ footer {
 .map-user-wrap p {
   display: inline;
 };
+.map-user-wrap i {
+  margin-right: 5px;
+};
 .map-user-x  {
   float: right;
   display: inline;
@@ -301,7 +304,11 @@ footer {
   text-decoration: none;
   color: $color-lightyellow;
 };
-
+.map-user-wrap.false > div {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+};
 //Auth forms
 
 .form-wrap {

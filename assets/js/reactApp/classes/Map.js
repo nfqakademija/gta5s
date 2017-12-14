@@ -211,8 +211,7 @@ function Map() {
             const marker = new google.maps.Marker({
                 position: this.convertXYtoLatLng(item[1].position.x, item[1].position.y),
                 icon: this.image,
-                user: item[1].firstName + ' ' + item[1].lastName,
-                open: false
+                user: item[1].firstName + ' ' + item[1].lastName
             });
 
             marker.setMap(this.googleMap);

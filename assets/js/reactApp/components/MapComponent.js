@@ -5,6 +5,7 @@ import * as usersActions from "../actions/usersActions";
 import PropTypes from "prop-types";
 import Map from "../classes/Map";
 import * as vars from "../common/variables";
+import UserComponent from "./UserComponent";
 
 function initMap() {
     vars.gMap = new Map();
@@ -18,7 +19,7 @@ class MapComponent extends React.Component
     addMarkerListeners() {
         vars.gMap.markers.forEach((marker) => {
             marker.addListener("click", () => {
-                this.props.dispatch(usersActions.loadUser(marker));
+                this.props.dispatch(usersActions.loadUser(marker, this.props.activeUser));
             });
         });
     }
@@ -40,20 +41,26 @@ class MapComponent extends React.Component
     }
 
     shouldComponentUpdate(nextProps) {
-        if (this.props.activeUser !== nextProps.activeUser) {
-            console.log(this.props.activeUser);
+        console.log(nextProps);
+        if (JSON.stringify(this.props.activeUser) !== JSON.stringify(nextProps.activeUser)) {
+            console.log(1);
             return true;
         }
         if (JSON.stringify(this.props.markersJson) !== JSON.stringify(nextProps.markersJson)) {
+            console.log(2);
             return true;
         }
+        console.log(3);
         return false;
     }
 
    render() {
-        console.log(this.props);
+        const {activeUser} = this.props;
         return(
-            <div id="react-map"></div>
+            <div>
+                <UserComponent activeUser={activeUser}/>
+                <div id="react-map"></div>
+            </div>
         );
     }
 }
