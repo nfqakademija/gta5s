@@ -12,7 +12,7 @@ class ProfileController extends Controller
     /**
      * @Route ("/profile/edit", name="profile-edit")
      */
-    public function editAction()
+    public function editAction() : Response
     {
 
         return $this->forward('FOSUserBundle:Profile:edit');

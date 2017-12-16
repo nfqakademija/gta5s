@@ -8,8 +8,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\History;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class MapController extends Controller
 {
@@ -17,16 +19,27 @@ class MapController extends Controller
     /**
      * @Route("/json/map", name="json_map")
      */
-    public function getPlayersAction()
+    public function getPlayersAction() : Response
+    {
+        return $this->getPlayersPastAction('now');
+    }
+
+    /**
+     * @Route("json/map/{date}", name="json_map_past")
+     */
+    public function getPlayersPastAction($date) : Response
     {
         $em = $this->getDoctrine()->getManager();
 
         $actions = $em->getRepository('AppBundle:History')
-            ->getNewestHistoryActionByOnlinePlayer();
+            ->getHistoryActionByOnlinePlayer(
+                new \DateTime($date)
+            );
 
         $map_data = [];
         $map_data['players'] = [];
 
+        /** @var History $action */
         foreach ($actions as $action) {
             $account = $action->getAccount();
             $details = json_decode($action->getDetails());
@@ -35,7 +48,7 @@ class MapController extends Controller
             $obj['firstName'] = $account->getFirstName();
             $obj['lastName'] = $account->getLastName();
             $obj['position'] = $details->{'pos'};
-            $map_data['players']['id'.$account->getId()] = $obj;
+            $map_data['players']['id' . $account->getId()] = $obj;
         }
 
         return $this->json($map_data);

@@ -14,15 +14,21 @@ use Doctrine\ORM\EntityRepository;
 class HistoryRepository extends EntityRepository
 {
 
+    public function getNewestHistoryActionByOnlinePlayer(string $datetime = "now") {
+
+        return $this->getHistoryActionByOnlinePlayer(new \DateTime($datetime));
+
+    }
+
     /**
      * Returns only the newest history action per online player.
      *
      * @return array
      */
-    public function getNewestHistoryActionByOnlinePlayer(string $datetime = 'now') : array
+    public function getHistoryActionByOnlinePlayer(\DateTime $datetime) : array
     {
 
-        $to = new \DateTime($datetime);
+        $to = $datetime;
         $from = (new \DateTime($datetime))->sub(new \DateInterval('PT5S'));
 
         return $this->getEntityManager()->createQueryBuilder()
