@@ -6,6 +6,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 module.exports = {
     devtool: "source-map",
     entry: {
+        spinner: path.join(__dirname, "assets/js/spinner.js"),
         main: path.join(__dirname, "assets/js/main.js"),
         reactMap: path.join(__dirname, "assets/js/reactApp/index.js")
     },
@@ -16,7 +17,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
-        // new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),

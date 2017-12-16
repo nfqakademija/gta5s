@@ -4,13 +4,19 @@
         <meta charset="UTF-8" />
         <title>{% block title %}L5RP Projektas{% endblock %}</title>
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/css/spinner.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/css/reactMap.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}" />
     </head>
     <body>
+    {#Loading screen#}
+    <div class="loading-screen">
+    </div>
+
     <div class="wrap">
+
         {# Server info #}
         <div class="server-info-line">
             <a href="{{ path('homepage') }}">
@@ -120,6 +126,7 @@
     </footer>
 
         {% block javascripts %}
+            <script src="{{ asset('assets/spinner.js') }}"></script>
             <script src="{{ asset('assets/main.js') }}"></script>
             <script src="{{ asset('assets/reactMap.js') }}"></script>
             <script async src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCtCFPnXWV_4nis2Dp07e5ZWQ-awAaQBYs&callback=initMap"></script>

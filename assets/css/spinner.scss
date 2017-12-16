@@ -1,0 +1,17 @@
+@import "supplementary/colors.scss";
+
+.loading-screen {
+    height: 100vh;
+    width: 100%;
+    background: $color-grey;
+    z-index: 99;
+    position: fixed;
+}
+
+.wrap {
+    visibility: hidden;
+}
+
+.footer {
+    display: none;
+}

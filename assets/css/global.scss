@@ -461,20 +461,39 @@ footer {
   text-align: center;
   color: $color-pinkblack;
 }
-.navigation span {
-  text-align: center;
-}
-.navigation span {
-  padding: 1em;
-  color: $color-pinkblack
-}
-.navigation span a,
-.navigation span a:visited {
+.topai-wrapper td a:link,
+.topai-wrapper td a:visited,
+.topai-wrapper td a:hover {
   color: $color-goldbrown;
   text-decoration: none;
 }
-.navigation span a:hover,
-.navigation span a:active {
+.pagination {
+  display: block;
+  margin-top: 4em;
+}
+.navigation span {
+  text-align: center;
+  width: 35px;
+  display: inline-block;
+  padding: 10px;
+  color: $color-pinkblack;
+  border: 1px solid $color-goldbrown;
+  background: $color-goldbrown;
+  margin: 0 1px;
+}
+.navigation span:hover {
+  border: 1px solid $color-pinkblack;
+  background: $color-pinkblack;
+  margin: 0 1px;
+}
+.navigation span a,
+.navigation span a:visited {
+  color: $color-lightpink;
+  text-decoration: none;
+}
+.navigation .current,
+.navigation .current:hover {
+  border: 1px solid $color-goldbrown;
   color: $color-goldbrown;
-  text-decoration: underline;
+  background: $color-grey;
 }
