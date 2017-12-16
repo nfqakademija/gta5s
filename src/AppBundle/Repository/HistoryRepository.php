@@ -14,10 +14,9 @@ use Doctrine\ORM\EntityRepository;
 class HistoryRepository extends EntityRepository
 {
 
-    public function getNewestHistoryActionByOnlinePlayer(string $datetime = "now") {
-
+    public function getNewestHistoryActionByOnlinePlayer(string $datetime = "now")
+    {
         return $this->getHistoryActionByOnlinePlayer(new \DateTime($datetime));
-
     }
 
     /**
