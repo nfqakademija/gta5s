@@ -28,7 +28,7 @@ class HistoryRepository extends EntityRepository
     {
 
         $to = $datetime;
-        $from = (new \DateTime($datetime))->sub(new \DateInterval('PT1S'));
+        $from = (clone $datetime)->sub(new \DateInterval('PT1S'));
 
         return $this->getEntityManager()->createQueryBuilder()
             ->select('h')
