@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>{% block title %}L5RP Projektas{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}" />
     </head>
@@ -50,11 +50,6 @@
 
             <div class="collapse navbar-collapse" id="topTargetNav">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="bold">Forumas</span>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('topai') }}">
                             <span class="bold">Topai</span>
@@ -149,7 +144,7 @@
     </footer>
 
     {% block javascripts %}
-        <script src="{{ asset('assets/app.js') }}"></script>
+        <script src="{{ asset('assets/main.js') }}"></script>
     {% endblock %}
 
     </body>

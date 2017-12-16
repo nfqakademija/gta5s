@@ -4,20 +4,26 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-    devtool: "eval-source-map",
-    entry: [
-        path.join(__dirname, "assets/css/global.scss"),
-        path.join(__dirname, "assets/js/main.js"),
-    ],
+    devtool: "source-map",
+    entry: {
+        main: path.join(__dirname, "assets/js/main.js"),
+        reactMap: path.join(__dirname, "assets/js/reactApp/index.js")
+    },
     output: {
         path: path.join(__dirname, "web/assets"),
-        filename: 'app.js',
+        filename: '[name].js',
         publicPath: "/"
     },
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        // new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
+        }),
+        new ExtractTextPlugin("css/[name].css", {
+            allChunks: true
+        }),
         new webpack.optimize.UglifyJsPlugin(),
-        new ExtractTextPlugin("css/styles.css"),
         new OptimizeCssAssetsPlugin()
     ],
     module: {
