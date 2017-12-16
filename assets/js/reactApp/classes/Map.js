@@ -99,6 +99,7 @@ function Map() {
         center: new google.maps.LatLng(62, 39),
         zoom: 4,
         streetViewControl: false,
+        scrollwheel: false,
         mapTypeControlOptions: {
             mapTypeIds: ['Atlas', 'Satellite', 'Road']
         }
