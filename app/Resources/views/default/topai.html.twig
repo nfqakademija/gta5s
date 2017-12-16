@@ -6,7 +6,7 @@
             <div class="col-xs-12">
                 <div class="topai-wrapper">
                     <h1>Top Žaidėjai</h1>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover table-condensed">
                         <tr>
                             <th>Žaidėjas</th>
                             <th>Patirtis</th>
@@ -15,7 +15,7 @@
 
                         {% for item in pagination %}
                             <tr>
-                                <td>{{ item.firstName }} {{ item.lastName }}</td>
+                                <td><a href="{{ path("profile", {profile_id: 1}) }}">{{ item.firstName }} {{ item.lastName }}</a></td>
                                 <td>{{ item.character.xp }}</td>
                                 <td>{{ item.character.money }}</td
                             </tr>
