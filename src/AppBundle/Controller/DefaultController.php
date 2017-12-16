@@ -39,7 +39,7 @@ class DefaultController extends Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            2/*limit per page*/
+            20/*limit per page*/
         );
 
         return $this->render('default/topai.html.twig', array('pagination' => $pagination));
