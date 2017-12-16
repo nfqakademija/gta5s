@@ -17,7 +17,8 @@
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "spin.js": "^3.1.0"
+    "spin.js": "^3.1.0",
+    "spinjs": "^0.4.58"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.33",
