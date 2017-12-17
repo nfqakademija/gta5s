@@ -29,6 +29,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 body {
   max-width: 1500px;
   margin: auto;
+  overflow-x: hidden;
 }
 
 flex {
@@ -84,6 +85,12 @@ a:focus {
   height: 30px;
   display: inline-block;
   margin: 5px 10px;
+}
+.server-info-line a,
+.server-info-line a:visited,
+.server-info-line a:hover,
+.server-info-line a:active {
+  color: $color-pinkorange;
 }
 .server-info-line h1 {
   display: inline-block;
@@ -331,14 +338,16 @@ footer {
   border: none;
   padding: 5px;
   margin-top: 15px;
-  border: 1px solid $color-goldbrown;
+  border: none;
+  outline: none;
 }
 
 .auth-button:hover,
 .auth-button:active,
 .auth-button:focus {
   background: $color-pinkblack;
-  border-color: $color-pinkblack;
+  border: none;
+  outline: none;
 }
 
 //Profile
@@ -406,6 +415,9 @@ footer {
   height: 70px;
   float:right;
   margin-left: 2em;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .row-parent {
   overflow: hidden;
@@ -413,6 +425,9 @@ footer {
 }
 .dashboard-bio {
   margin: 1em 0;
+}
+.profile-avatar-change {
+  overflow: hidden;
 }
 .profile-avatar-change p {
   font-weight: bold;
@@ -422,11 +437,18 @@ footer {
   height:200px;
   float: none;
   margin: auto;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .profile-avatar-change form {
   display: inline-block;
 }
-
+.fos_user_profile_edit textarea {
+  resize: none;
+  height: 270px;
+  width: 100%;
+}
 @media screen and (max-width: 767px) {
   .flex-dashboard {
     display: block;
@@ -438,6 +460,7 @@ footer {
   .dashboard-nav {
     width: 100%;
     position: inherit;
+    height: auto !important;
   }
   .dashboard-item-box-wrap {
     margin-left: 0px;
@@ -496,4 +519,11 @@ footer {
   border: 1px solid $color-goldbrown;
   color: $color-goldbrown;
   background: $color-grey;
+}
+
+//Registered page
+.big-flash {
+  font-size: 2em;
+  margin-bottom: 1em;
+  color: $color-pinkdark;
 }

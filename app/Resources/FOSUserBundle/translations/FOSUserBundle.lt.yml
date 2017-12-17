@@ -20,7 +20,7 @@ profile:
         username: 'Naudotojo vardas'
         email: 'El. paštas'
     edit:
-        submit: Atnaujinti
+        submit: 'Atnaujinti Bio'
     flash:
         updated: 'Profilis atnaujintas.'
 change_password:

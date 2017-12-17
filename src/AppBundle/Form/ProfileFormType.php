@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Account;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseFormType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class ProfileFormType extends BaseFormType
@@ -20,6 +21,6 @@ class ProfileFormType extends BaseFormType
 
         $builder->remove('username');
         $builder->remove('email');
-        $builder->add('bio');
+        $builder->add('bio', TextareaType::class);
     }
 }
