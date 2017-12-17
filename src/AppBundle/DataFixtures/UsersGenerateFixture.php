@@ -58,28 +58,20 @@ class UsersGenerateFixture extends Fixture
             $manager->persist($account);
 
             if ($i < 10) {
-                $lastX = random_int(0, 2000);
-                $lastY = random_int(0, 2000);
-                $lastZ = random_int(0, 2000);
+                $x = random_int(0, 2000);
+                $y = random_int(0, 2000);
+                $z = random_int(0, 2000);
                 for ($j = 1; $j < 1001; $j++) {
-                    $lastX += random_int(-2, 2);
-                    $lastY += random_int(-2, 2);
-                    $lastZ += random_int(-2, 2);
+                    $x += random_int(-2, 2);
+                    $y += random_int(-2, 2);
+                    $z += random_int(-2, 2);
 
                     $action = new History();
                     $action->setAccount($account);
                     $action->setAction('idle');
-                    $action->setDetails(
-                        '
-                        {
-                            "pos": {
-                                "x": ' . $lastX . ',
-                                "y": ' . $lastY . ',
-                                "z": ' . $lastZ . '
-                            }
-                        }
-                    '
-                    );
+                    $action->setX($x);
+                    $action->setY($y);
+                    $action->setZ($z);
                     $action->setTime((new \DateTime('now'))->sub(new \DateInterval('PT' . $j . 'S')));
                     $manager->persist($action);
                 }

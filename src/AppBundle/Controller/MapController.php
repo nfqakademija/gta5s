@@ -36,19 +36,23 @@ class MapController extends Controller
                 new \DateTime($date)
             );
 
-        $map_data = [];
-        $map_data['players'] = [];
+        $map_data = [
+            'players' => []
+        ];
 
         /** @var History $action */
         foreach ($actions as $action) {
             $account = $action->getAccount();
-            $details = json_decode($action->getDetails());
 
-            $obj = [];
-            $obj['firstName'] = $account->getFirstName();
-            $obj['lastName'] = $account->getLastName();
-            $obj['position'] = $details->{'pos'};
-            $map_data['players']['id' . $account->getId()] = $obj;
+            $map_data['players']['id' . $account->getId()] = [
+                'firstName' => $account->getFirstName(),
+                'lastName' => $account->getLastName(),
+                'position' => [
+                    'x' => $action->getX(),
+                    'y' => $action->getY(),
+                    'z' => $action->getZ(),
+                ]
+            ];
         }
 
         return $this->json($map_data);
