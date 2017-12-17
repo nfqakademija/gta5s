@@ -23,8 +23,6 @@ class UsersGenerateFixture extends Fixture
 
         $faker = Factory::create();
 
-        $acc = null;
-
         for ($i = 0; $i < 1000; $i++) {
             $character = new Character();
             $character->setGender(random_int(0, 1));
@@ -57,23 +55,22 @@ class UsersGenerateFixture extends Fixture
             $account->setFirstName($faker->unique()->firstName);
             $account->setLastName($faker->lastName);
             $account->setCharacter($character);
-            $acc = $account;
             $manager->persist($account);
-        }
 
-        $lastX = random_int(0, 2000);
-        $lastY = random_int(0, 2000);
-        $lastZ = random_int(0, 2000);
-        for ($j = 1; $j < 1001; $j++) {
-            $lastX += random_int(-2, 2);
-            $lastY += random_int(-2, 2);
-            $lastZ += random_int(-2, 2);
+            if ($i < 10) {
+                $lastX = random_int(0, 2000);
+                $lastY = random_int(0, 2000);
+                $lastZ = random_int(0, 2000);
+                for ($j = 1; $j < 1001; $j++) {
+                    $lastX += random_int(-2, 2);
+                    $lastY += random_int(-2, 2);
+                    $lastZ += random_int(-2, 2);
 
-            $action = new History();
-            $action->setAccount($acc);
-            $action->setAction('idle');
-            $action->setDetails(
-                '
+                    $action = new History();
+                    $action->setAccount($account);
+                    $action->setAction('idle');
+                    $action->setDetails(
+                        '
                         {
                             "pos": {
                                 "x": ' . $lastX . ',
@@ -82,11 +79,13 @@ class UsersGenerateFixture extends Fixture
                             }
                         }
                     '
-            );
-            $action->setTime((new \DateTime('now'))->sub(new \DateInterval('PT' . $j . 'S')));
-            $manager->persist($action);
-        }
+                    );
+                    $action->setTime((new \DateTime('now'))->sub(new \DateInterval('PT' . $j . 'S')));
+                    $manager->persist($action);
+                }
 
-        $manager->flush();
+                $manager->flush();
+            }
+        }
     }
 }
