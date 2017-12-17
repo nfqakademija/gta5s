@@ -61,5 +61,4 @@ class Image
     {
         return $this->name;
     }
-
 }

@@ -59,5 +59,4 @@ class UsersGenerateFixture extends Fixture
 
         $manager->flush();
     }
-
 }
