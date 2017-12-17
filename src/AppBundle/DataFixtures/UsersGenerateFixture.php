@@ -10,6 +10,7 @@ namespace AppBundle\DataFixtures;
 
 use AppBundle\Entity\Account;
 use AppBundle\Entity\Character;
+use AppBundle\Entity\History;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
@@ -21,6 +22,8 @@ class UsersGenerateFixture extends Fixture
     {
 
         $faker = Factory::create();
+
+        $acc = null;
 
         for ($i = 0; $i < 1000; $i++) {
             $character = new Character();
@@ -54,7 +57,34 @@ class UsersGenerateFixture extends Fixture
             $account->setFirstName($faker->unique()->firstName);
             $account->setLastName($faker->lastName);
             $account->setCharacter($character);
+            $acc = $account;
             $manager->persist($account);
+        }
+
+        $lastX = random_int(0, 2000);
+        $lastY = random_int(0, 2000);
+        $lastZ = random_int(0, 2000);
+        for ($j = 1; $j < 1001; $j++) {
+            $lastX += random_int(-2, 2);
+            $lastY += random_int(-2, 2);
+            $lastZ += random_int(-2, 2);
+
+            $action = new History();
+            $action->setAccount($acc);
+            $action->setAction('idle');
+            $action->setDetails(
+                '
+                        {
+                            "pos": {
+                                "x": ' . $lastX . ',
+                                "y": ' . $lastY . ',
+                                "z": ' . $lastZ . '
+                            }
+                        }
+                    '
+            );
+            $action->setTime((new \DateTime('now'))->sub(new \DateInterval('PT' . $j . 'S')));
+            $manager->persist($action);
         }
 
         $manager->flush();
