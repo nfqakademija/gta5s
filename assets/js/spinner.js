@@ -32,5 +32,5 @@ var spinner = new Spinner(opts).spin(target);
 window.addEventListener("load", function() {
     document.querySelector(".loading-screen").style.display = "none";
     document.querySelector(".wrap").style.visibility = "visible";
-    document.querySelector("footer").style.display = "block";
+    document.querySelector("footer").style.visibility = "visible";
 });

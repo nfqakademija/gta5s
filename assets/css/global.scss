@@ -361,6 +361,9 @@ footer {
   list-style: none;
   padding: 0;
 }
+.no-left-margin {
+  margin-left: 0 !important;
+}
 .dashboard-nav ul li a,
 .dashboard-nav ul li a:visited {
   width: 100%;
@@ -409,6 +412,12 @@ footer {
 .dashboard-clear {
   text-align: left;
   clear: both;
+}
+.dashboard-clear td {
+  border-top: 1px solid $color-lightpink;
+}
+.dashboard-clear hr {
+  border-top: 5px solid lightgrey;
 }
 .dashboard-item-box img {
   width: 70px;
@@ -484,6 +493,14 @@ footer {
   text-align: center;
   color: $color-pinkblack;
 }
+.topai-wrapper th a:link,
+.topai-wrapper th a:visited{
+  color: $color-linkpink;
+}
+.topai-wrapper th a:hover {
+  text-decoration: none;
+  color: $color-pink;
+}
 .topai-wrapper td a:link,
 .topai-wrapper td a:visited,
 .topai-wrapper td a:hover {
@@ -520,6 +537,7 @@ footer {
   color: $color-goldbrown;
   background: $color-grey;
 }
+
 
 //Registered page
 .big-flash {

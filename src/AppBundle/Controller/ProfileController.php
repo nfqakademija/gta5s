@@ -36,7 +36,7 @@ class ProfileController extends Controller
         }
 
         return $this->render(
-            '@FOSUser/Profile/show.html.twig',
+            ':default:player.html.twig',
             [
                 'user' => $account
             ]

@@ -1,0 +1,57 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="flex-dashboard">
+        <div class="no-left-margin dashboard-item-box-wrap">
+            <div class="dashboard-item-box">
+
+                {% trans_default_domain 'FOSUserBundle' %}
+
+                <div class="dashboard-profile-title">
+                    <img src="{{ asset(user.getAvatar().getFileName()) }}"/>
+                    <h2 class="dashboard-name">{{  user.getFirstName() }} {{  user.getLastName() }}</h2>
+                </div>
+
+                <div class="dashboard-clear">
+                    <p class="dashboard-bio"><b>Bio: </b>{{ user.getBio() }}</p>
+                    <hr>
+                    {% if user.getCharacter() is not null %}
+
+                        <table class="table">
+                            {% if user.getCharacter().getGender() %}
+                                <tr>
+                                    <td><i class="fa fa-male" aria-hidden="true"></i> Lytis:</td>
+                                    <td>Vyras</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td><i class="fa fa-female" aria-hidden="true"></i> Lytis:</td>
+                                    <td>Moteris</td>
+                                </tr>
+                            {% endif %}
+                            <tr>
+                                <td><i class="fa fa-money" aria-hidden="true"></i> Pinigai:</td>
+                                <td>{{  user.getCharacter().getMoney() }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-trophy" aria-hidden="true"></i> Patirtis:</td>
+                                <td>{{  user.getCharacter().getXp() }}</td>
+                            </tr>
+                        </table>
+
+                    {% else %}
+
+                        <h5>Šis vartotojas dar neturi susikūręs savo paskyros!</h5>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

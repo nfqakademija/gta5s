@@ -1,3 +1,3 @@
 var jqWrapHeight = $(".wrap").height();
-console.log(jqWrapHeight);
+jqWrapHeight = jqWrapHeight - 92;
 document.querySelector(".dashboard-nav").style.height = jqWrapHeight + "px";
