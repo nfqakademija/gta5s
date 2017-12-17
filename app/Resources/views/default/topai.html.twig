@@ -13,11 +13,11 @@
                                 {% if collumn == "xp" %}
                                     {% if type == "ASC" %}
                                         <a href="{{ path("topai", {"col": "xp", "type": "DESC", "page": 1}) }}">
-                                            Patirtis
+                                            Patirtis <i class="fa fa-sort-asc" aria-hidden="true"></i>
                                         </a>
                                     {% else %}
                                         <a href="{{ path("topai", {"col": "xp", "type": "ASC", "page": 1}) }}">
-                                            Patirtis
+                                            Patirtis <i class="fa fa-sort-desc" aria-hidden="true"></i>
                                         </a>
                                     {% endif %}
                                 {% else %}
@@ -30,11 +30,11 @@
                                 {% if collumn == "money" %}
                                     {% if type == "ASC" %}
                                         <a href="{{ path("topai", {"col": "money", "type": "DESC", "page": 1}) }}">
-                                            Pinigai
+                                            Pinigai <i class="fa fa-sort-asc" aria-hidden="true"></i>
                                         </a>
                                     {% else %}
                                         <a href="{{ path("topai", {"col": "money", "type": "ASC", "page": 1}) }}">
-                                            Pinigai
+                                            Pinigai <i class="fa fa-sort-desc" aria-hidden="true"></i>
                                         </a>
                                     {% endif %}
                                 {% else %}
