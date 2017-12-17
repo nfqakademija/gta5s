@@ -7,19 +7,19 @@
     </div>
 
     <div class="dashboard-clear">
-        <p class="dashboard-bio">Biografija: {{ user.getBio() }}</p>
-
+        <p class="dashboard-bio"><b>Bio: </b>{{ user.getBio() }}</p>
+        <hr>
         {% if user.getCharacter() is not null %}
 
             <table class="table">
                 {% if user.getCharacter().getGender() %}
                     <tr>
-                        <td>Lytis:</td>
+                        <td><i class="fa fa-male" aria-hidden="true"></i> Lytis:</td>
                         <td>Vyras</td>
                     </tr>
                 {% else %}
                     <tr>
-                        <td>Lytis:</td>
+                        <td><i class="fa fa-female" aria-hidden="true"></i> Lytis:</td>
                         <td>Moteris</td>
                     </tr>
                 {% endif %}

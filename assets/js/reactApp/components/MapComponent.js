@@ -7,6 +7,7 @@ import Map from "../classes/Map";
 import * as vars from "../common/variables";
 import UserComponent from "./UserComponent";
 
+
 function initMap() {
     vars.gMap = new Map();
     vars.gMap.siteURL = vars.url;
@@ -21,6 +22,7 @@ class MapComponent extends React.Component
 
         this.closeUser = this.closeUser.bind(this);
     }
+
     addMarkerListeners() {
         vars.gMap.markers.forEach((marker) => {
             marker.addListener("click", () => {
@@ -34,6 +36,12 @@ class MapComponent extends React.Component
     }
 
     componentDidMount() {
+        $('#timepicker').timepicker({
+            showInputs: false,
+            minuteStep: 1,
+            showMeridian: false,
+        });
+
         const self = this;
         window.addEventListener("load", function (event) {
             (function loadMarkers() {
@@ -59,10 +67,29 @@ class MapComponent extends React.Component
         this.props.dispatch(usersActions.loadUser({"closeUser": true}, this.props.activeUser));
     }
 
+    timerDropdown() {
+        var button = document.querySelector(".timer-menu");
+        if (button.getAttribute("class") === "dropdown-menu timer-menu timer-menu-active") {
+            button.setAttribute("class", "dropdown-menu timer-menu timer-menu-hidden");
+        } else {
+            button.setAttribute("class", "dropdown-menu timer-menu timer-menu-active");
+        }
+    }
+
     render() {
         const {activeUser} = this.props;
         return(
             <div>
+                <div className="map-timer">
+                    <div class="dropdown">
+                        <button onClick={this.timerDropdown} id="timer-button" class="btn btn-primary map-dropdown-button">Dienos istorija&nbsp;
+                            <span class="caret"></span></button>
+                        <div class="dropdown-menu timer-menu timer-menu-hidden">
+                            <span>Kur žaidėjai buvo </span>
+                            <input id="timepicker" type="text" className="form-control input-small" />
+                        </div>
+                    </div>
+                </div>
                 <UserComponent activeUser={activeUser} closeUser={this.closeUser} />
                 <div id="react-map"></div>
             </div>
