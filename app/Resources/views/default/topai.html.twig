@@ -47,7 +47,7 @@
 
                         {% for item in pagination %}
                             <tr>
-                                <td><a href="{{ path("profile", {profile_id: 1}) }}">{{ item.firstName }} {{ item.lastName }}</a></td>
+                                <td><a href="{{ path("profile", {"profile_id": item.id}) }}">{{ item.firstName }} {{ item.lastName }}</a></td>
                                 <td>{{ item.character.xp }}</td>
                                 <td>{{ item.character.money }}</td>
                             </tr>
