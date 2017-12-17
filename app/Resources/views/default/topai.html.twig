@@ -9,15 +9,47 @@
                     <table class="table table-striped table-hover table-condensed">
                         <tr>
                             <th>Žaidėjas</th>
-                            <th>Patirtis</th>
-                            <th>Pinigai</th>
+                            <th>
+                                {% if collumn == "xp" %}
+                                    {% if type == "ASC" %}
+                                        <a href="{{ path("topai", {"col": "xp", "type": "DESC", "page": 1}) }}">
+                                            Patirtis
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path("topai", {"col": "xp", "type": "ASC", "page": 1}) }}">
+                                            Patirtis
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{{ path("topai", {"col": "xp", "type": "DESC", "page": 1}) }}">
+                                        Patirtis
+                                    </a>
+                                {% endif %}
+                            </th>
+                            <th>
+                                {% if collumn == "money" %}
+                                    {% if type == "ASC" %}
+                                        <a href="{{ path("topai", {"col": "money", "type": "DESC", "page": 1}) }}">
+                                            Pinigai
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path("topai", {"col": "money", "type": "ASC", "page": 1}) }}">
+                                            Pinigai
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{{ path("topai", {"col": "money", "type": "DESC", "page": 1}) }}">
+                                        Pinigai
+                                    </a>
+                                {% endif %}
+                            </th>
                         </tr>
 
                         {% for item in pagination %}
                             <tr>
                                 <td><a href="{{ path("profile", {profile_id: 1}) }}">{{ item.firstName }} {{ item.lastName }}</a></td>
                                 <td>{{ item.character.xp }}</td>
-                                <td>{{ item.character.money }}</td
+                                <td>{{ item.character.money }}</td>
                             </tr>
                         {% endfor %}
                     </table>
