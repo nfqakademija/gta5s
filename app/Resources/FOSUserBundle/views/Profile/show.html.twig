@@ -3,3 +3,8 @@
 {% block fos_user_content %}
 {% include "@FOSUser/Profile/show_content.html.twig" %}
 {% endblock fos_user_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/profile.js') }}"></script>
+{% endblock %}

@@ -7,6 +7,8 @@ module.exports = {
     devtool: "source-map",
     entry: {
         spinner: path.join(__dirname, "assets/js/spinner.js"),
+        profile: path.join(__dirname, "assets/js/profile-sidebar.js"),
+        youtube: path.join(__dirname, "assets/js/youtube.js"),
         main: path.join(__dirname, "assets/js/main.js"),
         reactMap: path.join(__dirname, "assets/js/reactApp/index.js")
     },

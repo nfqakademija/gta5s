@@ -5,13 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}L5RP Projektas{% endblock %}</title>
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/css/spinner.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}" />
     </head>
     <body>
-    <div class="wrap">
+    {#Loading screen#}
+    <div class="loading-screen">
+    </div>
 
+    <div class="wrap">
         {# Server info #}
         <div class="server-info-line">
             <a href="{{ path('homepage') }}">
@@ -145,6 +149,7 @@
     </footer>
 
     {% block javascripts %}
+        <script src="{{ asset('assets/spinner.js') }}"></script>
         <script src="{{ asset('assets/main.js') }}"></script>
     {% endblock %}
 

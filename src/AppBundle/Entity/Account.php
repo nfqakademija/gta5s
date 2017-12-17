@@ -10,6 +10,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 define('DEFAULT_AVATAR_NAME', 'assets/images/avatars/default.png');
 
@@ -57,6 +58,7 @@ class Account extends BaseEmailUser
 
     /**
      * @ORM\Column(type="string", length=512)
+     * @Assert\Length(max = 512)
      */
     private $bio;
 

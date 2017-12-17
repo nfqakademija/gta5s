@@ -1,0 +1,32 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 margin-top-average">
+
+
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class=" big-flash flash-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+
+                <div>
+                    {% block fos_user_content %}
+                        <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                    {% endblock fos_user_content %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
