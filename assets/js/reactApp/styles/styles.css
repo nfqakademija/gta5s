@@ -18,3 +18,48 @@
 img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[href^="http://maps.google.com/maps"]{
     display:none !important;
 }
+.map-user-wrap {
+    overflow: hidden;
+}
+
+#map {
+    background: #281E2B;
+}
+.map-dropdown-button {
+    float: right;
+    background:#483B4C;
+    border: 1px solid transparent;
+    border-radius: 5px 0 0 0;
+}
+.map-dropdown-button:focus {
+    background:#E7E0DF;
+}
+.map-timer .dropdown-menu {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 0;
+    background: #E7E0DF;
+}
+.map-timer .dropdown-menu span {
+    float: left;
+    padding: 7px;
+}
+#timepicker {
+    width: 70px;
+    text-align: center;
+    float: left;
+}
+.timer-menu-hidden {
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none !important;
+    transition: height 0.1s ease-out;
+}
+.timer-menu-active {
+    height: 46px;
+    transition: height 0.1s ease-out;
+}

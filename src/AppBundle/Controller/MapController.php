@@ -21,7 +21,7 @@ class MapController extends Controller
      */
     public function getPlayersAction() : Response
     {
-        return $this->getPlayersPastAction('now');
+        return $this->getPlayersPastAction('2017-11-18 14:55:46');
     }
 
     /**

@@ -31,6 +31,9 @@ body {
   margin: auto;
   overflow-x: hidden;
 }
+html {
+  overflow-x: hidden;
+}
 
 flex {
   display: flex;
@@ -275,18 +278,27 @@ footer {
 .map-user-wrap {
   background: $color-pinkdark;
   padding: .5em 2em;
+  clear: both;
 };
 .map-user-wrap div {
   background: $color-pinkblack;
   color: $color-grey;
   padding:5px 10px;
-  height: auto;
+  height: 29px;
+  transition: height 0.1s ease-out;
 };
 .map-user-wrap.false > div {
   height: 0;
   padding: 0;
   overflow: hidden;
+  transition: height 0.1s ease-out;
 };
+.map-user-wrap.false {
+  padding: 0;
+}
+.map-user-wrap.false > div * {
+  visibility: hidden;
+}
 .map-user-wrap p {
   display: inline;
 };
