@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Map from "../classes/Map";
 import * as vars from "../common/variables";
 import UserComponent from "./UserComponent";
+import TimerComponent from "./TimerComponent";
 
 
 function initMap() {
@@ -55,16 +56,6 @@ class MapComponent extends React.Component
         });
     }
 
-    // shouldComponentUpdate(nextProps) {
-    //     if (JSON.stringify(this.props.activeUser) !== JSON.stringify(nextProps.activeUser)) {
-    //         return true;
-    //     }
-    //     if (JSON.stringify(this.props.markersJson) !== JSON.stringify(nextProps.markersJson)) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     closeUser() {
         this.props.dispatch(usersActions.loadUser({"closeUser": true}, this.props.activeUser));
     }
@@ -87,9 +78,11 @@ class MapComponent extends React.Component
                 if (timeValue.length == 4) {
                     timeValue = "0" + timeValue;
                 }
-                const dateNow = "/" + new Date().toISOString().slice(0,10) + "%20" + timeValue + ":00";
+                const monthDay = new Date().getDate();
+                const yearAndMonth = new Date().toISOString().slice(0,8);
+
+                const dateNow = "/" + yearAndMonth + monthDay + "%20" + timeValue + ":00";
                 self.props.dispatch(markersActions.loadMarkersJson(dateNow));
-                console.log(timeValue);
             })();
         }, 100);
     }
@@ -124,17 +117,7 @@ class MapComponent extends React.Component
         const {activeUser} = this.props;
         return(
             <div>
-                <div className="map-timer">
-                    <div class="dropdown">
-                        <button onClick={this.timerDropdown} id="timer-button" class="btn btn-primary map-dropdown-button">Dienos istorija&nbsp;
-                            <span class="caret"></span></button>
-                        <div class="dropdown-menu timer-menu timer-menu-hidden">
-                            <span>Kur žaidėjai buvo </span>
-                            <input onBlur={this.changeMarkersTime} id="timepicker" type="text" className="form-control input-small" />
-                            <button onClick={this.markersTimeNow} className="btn btn-danger markers-now-button">Dabar</button>
-                        </div>
-                    </div>
-                </div>
+                <TimerComponent timerDropdown={this.timerDropdown} changeMarkersTime={this.changeMarkersTime} markersTimeNow={this.markersTimeNow}/>
                 <UserComponent activeUser={activeUser} closeUser={this.closeUser} />
                 <div id="react-map"></div>
             </div>
