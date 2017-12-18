@@ -31,9 +31,6 @@ body {
   margin: auto;
   overflow-x: hidden;
 }
-html {
-  overflow-x: hidden;
-}
 
 flex {
   display: flex;
@@ -275,6 +272,9 @@ footer {
   margin: 0;
   padding:15px;
 };
+.map-wrap {
+  width: 100%;
+}
 .map-user-wrap {
   background: $color-pinkdark;
   padding: .5em 2em;
@@ -285,7 +285,7 @@ footer {
   color: $color-grey;
   padding:5px 10px;
   height: 29px;
-  transition: height 0.1s ease-out;
+  transition: height 0.1s ease-in;
 };
 .map-user-wrap.false > div {
   height: 0;
