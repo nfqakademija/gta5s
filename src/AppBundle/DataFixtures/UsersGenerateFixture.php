@@ -10,6 +10,7 @@ namespace AppBundle\DataFixtures;
 
 use AppBundle\Entity\Account;
 use AppBundle\Entity\Character;
+use AppBundle\Entity\History;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
@@ -55,8 +56,28 @@ class UsersGenerateFixture extends Fixture
             $account->setLastName($faker->lastName);
             $account->setCharacter($character);
             $manager->persist($account);
-        }
 
-        $manager->flush();
+            if ($i < 10) {
+                $x = random_int(0, 2000);
+                $y = random_int(0, 2000);
+                $z = random_int(0, 2000);
+                for ($j = 1; $j < 1001; $j++) {
+                    $x += random_int(-2, 2);
+                    $y += random_int(-2, 2);
+                    $z += random_int(-2, 2);
+
+                    $action = new History();
+                    $action->setAccount($account);
+                    $action->setAction('idle');
+                    $action->setX($x);
+                    $action->setY($y);
+                    $action->setZ($z);
+                    $action->setTime((new \DateTime('now'))->sub(new \DateInterval('PT' . $j . 'S')));
+                    $manager->persist($action);
+                }
+
+                $manager->flush();
+            }
+        }
     }
 }

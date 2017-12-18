@@ -42,14 +42,25 @@ class History
     private $action;
 
     /**
-     * This is a JSON string.
-     * Contains some info about action for example position.
+     * @var float
      *
-     * @var string
-     *
-     * @ORM\Column(name="details", type="string", length=2048)
+     * @ORM\Column(name="x", type="float")
      */
-    private $details;
+    private $x;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="y", type="float")
+     */
+    private $y;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="z", type="float")
+     */
+    private $z;
 
 
     /**
@@ -135,26 +146,59 @@ class History
     }
 
     /**
-     * Set details
-     *
-     * @param string $details
-     *
+     * @return float
+     */
+    public function getX(): float
+    {
+        return $this->x;
+    }
+
+    /**
+     * @param float $x
      * @return History
      */
-    public function setDetails(string $details) : History
+    public function setX(float $x) : History
     {
-        $this->details = $details;
+        $this->x = $x;
 
         return $this;
     }
 
     /**
-     * Get details
-     *
-     * @return string
+     * @return float
      */
-    public function getDetails() : string
+    public function getY(): float
     {
-        return $this->details;
+        return $this->y;
+    }
+
+    /**
+     * @param float $y
+     * @return History
+     */
+    public function setY(float $y) : History
+    {
+        $this->y = $y;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getZ(): float
+    {
+        return $this->z;
+    }
+
+    /**
+     * @param float $z
+     * @return History
+     */
+    public function setZ(float $z) : History
+    {
+        $this->z = $z;
+
+        return $this;
     }
 }
