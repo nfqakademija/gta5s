@@ -31,6 +31,7 @@ img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[hr
     border: 1px solid transparent;
     border-radius: 5px 0 0 0;
 }
+.map-dropdown-button:hover,
 .map-dropdown-button:focus {
     background:#E7E0DF;
 }

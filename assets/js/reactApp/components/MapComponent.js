@@ -83,27 +83,36 @@ class MapComponent extends React.Component
         clearTimeout(this.markersTimeout);
         setTimeout(() => {
             (function loadMarkers() {
-                const dateNow = "/" + new Date().toISOString().slice(0,10) + "%20" + document.querySelector("#timepicker").value + ":00";
+                let timeValue = document.querySelector("#timepicker").value;
+                if (timeValue.length == 4) {
+                    timeValue = "0" + timeValue;
+                }
+                const dateNow = "/" + new Date().toISOString().slice(0,10) + "%20" + timeValue + ":00";
                 self.props.dispatch(markersActions.loadMarkersJson(dateNow));
+                console.log(timeValue);
             })();
         }, 100);
     }
 
-    markersTimeNow(e) {
+    markersTimeNow() {
         document.querySelector(".markers-now-button").setAttribute("disabled", true);
         const self = this;
         clearTimeout(this.markersTimeout);
         setTimeout(() => {
             (function loadMarkers() {
+                // reset timepicker
+                const date = new Date();
+                const time = (date.getHours()<10?'0':'') + date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes();
+                document.querySelector("#timepicker").value = time;
+
                 self.props.dispatch(markersActions.loadMarkersJson(""));
                 let markersTimeout = setTimeout(loadMarkers, vars.timeout);
                 self.markersTimeout = markersTimeout;
             })();
         }, 100);
         setTimeout(() => {
-            console.log(document.querySelector(".markers-now-button"));
             document.querySelector(".markers-now-button").removeAttribute("disabled");
-        }, 800);
+        }, 1200);
     }
 
     render() {
@@ -112,7 +121,6 @@ class MapComponent extends React.Component
             this.addMarkerListeners();
         }
 
-        console.log(this.props);
         const {activeUser} = this.props;
         return(
             <div>

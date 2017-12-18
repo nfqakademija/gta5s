@@ -533,6 +533,11 @@ footer {
   background: $color-goldbrown;
   margin: 0 1px;
 }
+@media screen and (max-width: 600px) {
+  .navigation span {
+    width: 33px;
+  }
+}
 .navigation span:hover {
   border: 1px solid $color-pinkblack;
   background: $color-pinkblack;
