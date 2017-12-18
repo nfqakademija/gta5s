@@ -5,5 +5,5 @@ if (urlContainer.url) {
 }
 
 export let gMap;
-export const timeout = 5000;
+export const timeout = 1000;
 

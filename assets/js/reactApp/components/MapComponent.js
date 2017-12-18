@@ -21,6 +21,8 @@ class MapComponent extends React.Component
         super(props, context);
 
         this.closeUser = this.closeUser.bind(this);
+        this.changeMarkersTime = this.changeMarkersTime.bind(this);
+        this.markersTimeNow = this.markersTimeNow.bind(this);
     }
 
     addMarkerListeners() {
@@ -37,31 +39,31 @@ class MapComponent extends React.Component
 
     componentDidMount() {
         $('#timepicker').timepicker({
-            showInputs: false,
+            showInputs: true,
             minuteStep: 1,
             showMeridian: false,
+            snapToStep: true
         });
 
         const self = this;
-        window.addEventListener("load", function (event) {
+        window.addEventListener("load", function(event) {
             (function loadMarkers() {
-                vars.gMap.addMarkers(self.props.markersJson.players);
-                self.props.dispatch(markersActions.loadMarkersJson());
-                self.addMarkerListeners();
-                setTimeout(loadMarkers, vars.timeout);
+                self.props.dispatch(markersActions.loadMarkersJson(self.props.timeOfDay));
+                var markersTimeout = setTimeout(loadMarkers, vars.timeout);
+                self.markersTimeout = markersTimeout;
             })();
         });
     }
 
-    shouldComponentUpdate(nextProps) {
-        if (JSON.stringify(this.props.activeUser) !== JSON.stringify(nextProps.activeUser)) {
-            return true;
-        }
-        if (JSON.stringify(this.props.markersJson) !== JSON.stringify(nextProps.markersJson)) {
-            return true;
-        }
-        return false;
-    }
+    // shouldComponentUpdate(nextProps) {
+    //     if (JSON.stringify(this.props.activeUser) !== JSON.stringify(nextProps.activeUser)) {
+    //         return true;
+    //     }
+    //     if (JSON.stringify(this.props.markersJson) !== JSON.stringify(nextProps.markersJson)) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     closeUser() {
         this.props.dispatch(usersActions.loadUser({"closeUser": true}, this.props.activeUser));
@@ -76,7 +78,41 @@ class MapComponent extends React.Component
         }
     }
 
+    changeMarkersTime() {
+        const self = this;
+        clearTimeout(this.markersTimeout);
+        setTimeout(() => {
+            (function loadMarkers() {
+                const dateNow = "/" + new Date().toISOString().slice(0,10) + "%20" + document.querySelector("#timepicker").value + ":00";
+                self.props.dispatch(markersActions.loadMarkersJson(dateNow));
+            })();
+        }, 100);
+    }
+
+    markersTimeNow(e) {
+        document.querySelector(".markers-now-button").setAttribute("disabled", true);
+        const self = this;
+        clearTimeout(this.markersTimeout);
+        setTimeout(() => {
+            (function loadMarkers() {
+                self.props.dispatch(markersActions.loadMarkersJson(""));
+                let markersTimeout = setTimeout(loadMarkers, vars.timeout);
+                self.markersTimeout = markersTimeout;
+            })();
+        }, 100);
+        setTimeout(() => {
+            console.log(document.querySelector(".markers-now-button"));
+            document.querySelector(".markers-now-button").removeAttribute("disabled");
+        }, 800);
+    }
+
     render() {
+        if (vars.gMap) {
+            vars.gMap.addMarkers(this.props.markersJson.players);
+            this.addMarkerListeners();
+        }
+
+        console.log(this.props);
         const {activeUser} = this.props;
         return(
             <div>
@@ -86,7 +122,8 @@ class MapComponent extends React.Component
                             <span class="caret"></span></button>
                         <div class="dropdown-menu timer-menu timer-menu-hidden">
                             <span>Kur žaidėjai buvo </span>
-                            <input id="timepicker" type="text" className="form-control input-small" />
+                            <input onBlur={this.changeMarkersTime} id="timepicker" type="text" className="form-control input-small" />
+                            <button onClick={this.markersTimeNow} className="btn btn-danger markers-now-button">Dabar</button>
                         </div>
                     </div>
                 </div>
@@ -99,13 +136,15 @@ class MapComponent extends React.Component
 
 MapComponent.propTypes = {
     markersJson: PropTypes.object.isRequired,
-    activeUser: PropTypes.object.isRequired
+    activeUser: PropTypes.object.isRequired,
+    timeOfDay: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
     return {
         markersJson: state.markersJson,
-        activeUser: state.activeUser
+        activeUser: state.activeUser,
+        timeOfDay: state.timeOfDay
     };
 }
 
