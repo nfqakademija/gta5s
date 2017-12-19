@@ -49,7 +49,7 @@ class CharacterHeadOverlay
      *
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -97,7 +97,7 @@ class CharacterHeadOverlay
      *
      * @return int
      */
-    public function getOffset() : integer
+    public function getOffset() : int
     {
         return $this->offset;
     }
@@ -121,7 +121,7 @@ class CharacterHeadOverlay
      *
      * @return int
      */
-    public function getValue() : integer
+    public function getValue() : int
     {
         return $this->value;
     }
