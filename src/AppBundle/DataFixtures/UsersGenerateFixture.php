@@ -23,7 +23,7 @@ class UsersGenerateFixture extends Fixture
 
         $faker = Factory::create();
 
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $character = new Character();
             $character->setGender(random_int(0, 1));
             $character->setJob(0);
@@ -80,8 +80,8 @@ class UsersGenerateFixture extends Fixture
                     $action->setY($y);
                     $action->setZ($z);
                     $action->setTime((new \DateTime('now'))
-                        ->add(new \DateInterval('PT1000S'))
-                        ->sub(new \DateInterval('PT' . $j . 'S')));
+                        //->add(new \DateInterval('PT1000S'))
+                        ->add(new \DateInterval('PT' . $j . 'S')));
 
                     if ($j === $joinTime) {
                         $action->setAction('join');
