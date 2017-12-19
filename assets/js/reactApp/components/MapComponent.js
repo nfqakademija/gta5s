@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Map from "../classes/Map";
 import * as vars from "../common/variables";
 import UserComponent from "./UserComponent";
+import TimerComponent from "./TimerComponent";
 
 
 function initMap() {
@@ -21,6 +22,8 @@ class MapComponent extends React.Component
         super(props, context);
 
         this.closeUser = this.closeUser.bind(this);
+        this.changeMarkersTime = this.changeMarkersTime.bind(this);
+        this.markersTimeNow = this.markersTimeNow.bind(this);
     }
 
     addMarkerListeners() {
@@ -37,30 +40,20 @@ class MapComponent extends React.Component
 
     componentDidMount() {
         $('#timepicker').timepicker({
-            showInputs: false,
+            showInputs: true,
             minuteStep: 1,
             showMeridian: false,
+            snapToStep: true
         });
 
         const self = this;
-        window.addEventListener("load", function (event) {
+        window.addEventListener("load", function(event) {
             (function loadMarkers() {
-                vars.gMap.addMarkers(self.props.markersJson.players);
-                self.props.dispatch(markersActions.loadMarkersJson());
-                self.addMarkerListeners();
-                setTimeout(loadMarkers, vars.timeout);
+                self.props.dispatch(markersActions.loadMarkersJson(self.props.timeOfDay));
+                var markersTimeout = setTimeout(loadMarkers, vars.timeout);
+                self.markersTimeout = markersTimeout;
             })();
         });
-    }
-
-    shouldComponentUpdate(nextProps) {
-        if (JSON.stringify(this.props.activeUser) !== JSON.stringify(nextProps.activeUser)) {
-            return true;
-        }
-        if (JSON.stringify(this.props.markersJson) !== JSON.stringify(nextProps.markersJson)) {
-            return true;
-        }
-        return false;
     }
 
     closeUser() {
@@ -76,20 +69,55 @@ class MapComponent extends React.Component
         }
     }
 
+    changeMarkersTime() {
+        const self = this;
+        clearTimeout(this.markersTimeout);
+        setTimeout(() => {
+            (function loadMarkers() {
+                let timeValue = document.querySelector("#timepicker").value;
+                if (timeValue.length == 4) {
+                    timeValue = "0" + timeValue;
+                }
+                const monthDay = new Date().getDate();
+                const yearAndMonth = new Date().toISOString().slice(0,8);
+
+                const dateNow = "/" + yearAndMonth + monthDay + "%20" + timeValue + ":00";
+                self.props.dispatch(markersActions.loadMarkersJson(dateNow));
+            })();
+        }, 100);
+    }
+
+    markersTimeNow() {
+        document.querySelector(".markers-now-button").setAttribute("disabled", true);
+        const self = this;
+        clearTimeout(this.markersTimeout);
+        setTimeout(() => {
+            (function loadMarkers() {
+                // reset timepicker
+                const date = new Date();
+                const time = (date.getHours()<10?'0':'') + date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes();
+                document.querySelector("#timepicker").value = time;
+
+                self.props.dispatch(markersActions.loadMarkersJson(""));
+                let markersTimeout = setTimeout(loadMarkers, vars.timeout);
+                self.markersTimeout = markersTimeout;
+            })();
+        }, 100);
+        setTimeout(() => {
+            document.querySelector(".markers-now-button").removeAttribute("disabled");
+        }, 1200);
+    }
+
     render() {
+        if (vars.gMap) {
+            vars.gMap.addMarkers(this.props.markersJson.players);
+            this.addMarkerListeners();
+        }
+
         const {activeUser} = this.props;
         return(
             <div>
-                <div className="map-timer">
-                    <div class="dropdown">
-                        <button onClick={this.timerDropdown} id="timer-button" class="btn btn-primary map-dropdown-button">Dienos istorija&nbsp;
-                            <span class="caret"></span></button>
-                        <div class="dropdown-menu timer-menu timer-menu-hidden">
-                            <span>Kur žaidėjai buvo </span>
-                            <input id="timepicker" type="text" className="form-control input-small" />
-                        </div>
-                    </div>
-                </div>
+                <TimerComponent timerDropdown={this.timerDropdown} changeMarkersTime={this.changeMarkersTime} markersTimeNow={this.markersTimeNow}/>
                 <UserComponent activeUser={activeUser} closeUser={this.closeUser} />
                 <div id="react-map"></div>
             </div>
@@ -99,13 +127,15 @@ class MapComponent extends React.Component
 
 MapComponent.propTypes = {
     markersJson: PropTypes.object.isRequired,
-    activeUser: PropTypes.object.isRequired
+    activeUser: PropTypes.object.isRequired,
+    timeOfDay: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
     return {
         markersJson: state.markersJson,
-        activeUser: state.activeUser
+        activeUser: state.activeUser,
+        timeOfDay: state.timeOfDay
     };
 }
 

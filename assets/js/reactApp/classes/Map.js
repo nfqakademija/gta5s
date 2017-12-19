@@ -16,23 +16,6 @@ function Map() {
         anchor: new google.maps.Point(7.5, 7.5)
     };
     this.markers = [];
-    this.positions = [
-        {
-            "firstName": "Kung",
-            "lastName": "Lao",
-            "position": [5.363882, 0.044922]
-        },
-        {
-            "firstName": "Johnny",
-            "lastName": "Cage",
-            "position": [21.363882, 10.044922]
-        },
-        {
-            "firstName": "Sonya",
-            "lastName": "Blade",
-            "position": [2.363882, 15.044922]
-        }
-    ];
     this.convertedJson = function(json) {
         return Object.entries(json);
     };
