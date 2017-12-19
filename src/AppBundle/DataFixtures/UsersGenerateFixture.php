@@ -57,7 +57,7 @@ class UsersGenerateFixture extends Fixture
             $account->setCharacter($character);
             $manager->persist($account);
 
-            if ($i < 10) {
+            if ($i < 20) {
                 $joinTime = 1;
                 $enterTime = random_int(2, 200);
                 $exitTime = random_int(201, 401);
@@ -66,13 +66,13 @@ class UsersGenerateFixture extends Fixture
                 $killTime = random_int(610, 800);
                 $leftTime = 1001;
 
-                $x = random_int(0, 2000);
-                $y = random_int(0, 2000);
+                $x = random_int(-2000, 2000);
+                $y = random_int(0, 4000);
                 $z = random_int(0, 2000);
                 for ($j = 1; $j < 1001; $j++) {
-                    $x += random_int(-2, 2);
-                    $y += random_int(-2, 2);
-                    $z += random_int(-2, 2);
+                    $x += random_int(0, 10);
+                    $y += random_int(-10, 10);
+                    $z += random_int(-10, 10);
 
                     $action = new History();
                     $action->setAccount($account);
