@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Account;
+use AppBundle\Entity\History;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityRepository;
 
@@ -22,6 +24,7 @@ class HistoryRepository extends EntityRepository
     /**
      * Returns only the newest history action per online player.
      *
+     * @param \DateTime $datetime
      * @return array
      */
     public function getHistoryActionByOnlinePlayer(\DateTime $datetime) : array
@@ -32,10 +35,29 @@ class HistoryRepository extends EntityRepository
 
         return $this->getEntityManager()->createQueryBuilder()
             ->select('h')
-            ->from('AppBundle:History', 'h')
+            ->from(History::class, 'h')
             ->where('h.time >= :from AND h.time <= :to')
             ->setParameter('from', $from, Type::DATETIME)
             ->setParameter('to', $to, Type::DATETIME)
+            ->getQuery()->getResult();
+    }
+
+    /**
+     * Returns all player actions, but leaves out idle ones.
+     *
+     * @param Account $account
+     * @return array
+     */
+    public function getAllActionsByPlayer(Account $account) : array
+    {
+        return $this->getEntityManager()->createQueryBuilder()
+            ->select('h')
+            ->from(History::class, 'h')
+            ->where('h.action != :action')
+            ->andWhere('h.account = :account')
+            ->orderBy('h.time', 'DESC')
+            ->setParameter('action', 'idle')
+            ->setParameter('account', $account)
             ->getQuery()->getResult();
     }
 }

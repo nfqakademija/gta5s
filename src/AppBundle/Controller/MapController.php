@@ -57,4 +57,38 @@ class MapController extends Controller
 
         return $this->json($map_data);
     }
+
+    /**
+     * @Route("json/actions/{account_id}", name="json_actions")
+     *
+     * @param int $account_id
+     * @return Response
+     */
+    public function getPlayersAllActions($account_id) : Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $account = $em
+            ->getRepository('AppBundle:Account')
+            ->find($account_id);
+
+        $actions = $em->getRepository('AppBundle:History')
+            ->getAllActionsByPlayer($account);
+
+        $acc_data = [];
+
+        /** @var History $action */
+        foreach ($actions as $action) {
+            $time = $action->getTime()->format('Y-m-d H:i:s');
+
+            $acc_data[$time] = [
+                'name' => $action->getAction(),
+                'x' => $action->getX(),
+                'y' => $action->getY(),
+                'z' => $action->getZ()
+            ];
+        }
+
+        return $this->json($acc_data);
+    }
 }
