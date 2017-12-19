@@ -105,6 +105,8 @@ class UsersGenerateFixture extends Fixture
                 }
             }
 
+            printf('%d / %d\n', $i, 1001);
+
             $manager->flush();
         }
     }
