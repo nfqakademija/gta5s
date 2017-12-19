@@ -57,6 +57,7 @@ class MapComponent extends React.Component
     }
 
     closeUser() {
+        document.querySelector(".user-events-menu").setAttribute("class", "user-events-menu user-events-menu-hidden");
         this.props.dispatch(usersActions.loadUser({"closeUser": true}, this.props.activeUser));
     }
 
@@ -66,6 +67,15 @@ class MapComponent extends React.Component
             button.setAttribute("class", "dropdown-menu timer-menu timer-menu-hidden");
         } else {
             button.setAttribute("class", "dropdown-menu timer-menu timer-menu-active");
+        }
+    }
+
+    userEventsDropdown() {
+        var button = document.querySelector(".user-events-menu");
+        if (button.getAttribute("class") === "user-events-menu user-events-menu-active") {
+            button.setAttribute("class", "user-events-menu user-events-menu-hidden");
+        } else {
+            button.setAttribute("class", "user-events-menu user-events-menu-active");
         }
     }
 
@@ -117,8 +127,16 @@ class MapComponent extends React.Component
         const {activeUser} = this.props;
         return(
             <div>
-                <TimerComponent timerDropdown={this.timerDropdown} changeMarkersTime={this.changeMarkersTime} markersTimeNow={this.markersTimeNow}/>
-                <UserComponent activeUser={activeUser} closeUser={this.closeUser} />
+                <TimerComponent
+                    timerDropdown={this.timerDropdown}
+                    changeMarkersTime={this.changeMarkersTime}
+                    markersTimeNow={this.markersTimeNow}
+                />
+                <UserComponent
+                    activeUser={activeUser}
+                    closeUser={this.closeUser}
+                    userEventsDropdown={this.userEventsDropdown}
+                />
                 <div id="react-map"></div>
             </div>
         );

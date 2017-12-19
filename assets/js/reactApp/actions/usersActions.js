@@ -18,6 +18,7 @@ export function loadUser(marker, activeUser) {
         activeUser.open === true && (marker.user) && marker.user === activeUser.user ||
         activeUser.open === true && marker.closeUser === true
     ) {
+        document.querySelector(".user-events-menu").setAttribute("class", "user-events-menu user-events-menu-hidden");
         return {
             type: types.LOAD_USER_CLOSE,
             user,

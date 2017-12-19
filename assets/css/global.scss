@@ -280,13 +280,16 @@ footer {
   padding: .5em 2em;
   clear: both;
 };
-.map-user-wrap div {
+.map-user-wrap div:first-child {
   background: $color-pinkblack;
   color: $color-grey;
   padding:5px 10px;
   height: 29px;
   transition: height 0.1s ease-in;
 };
+.map-user-wrap div:last-child {
+  height: 0;
+}
 .map-user-wrap.false > div {
   height: 0;
   padding: 0;
