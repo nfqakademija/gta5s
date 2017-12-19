@@ -58,6 +58,14 @@ class UsersGenerateFixture extends Fixture
             $manager->persist($account);
 
             if ($i < 10) {
+                $joinTime = 1;
+                $enterTime = random_int(2, 200);
+                $exitTime = random_int(201, 401);
+                $deathTime = random_int(401, 601);
+                $spawnTime = $deathTime + 1;
+                $killTime = random_int(610, 800);
+                $leftTime = 1001;
+
                 $x = random_int(0, 2000);
                 $y = random_int(0, 2000);
                 $z = random_int(0, 2000);
@@ -68,11 +76,29 @@ class UsersGenerateFixture extends Fixture
 
                     $action = new History();
                     $action->setAccount($account);
-                    $action->setAction('idle');
                     $action->setX($x);
                     $action->setY($y);
                     $action->setZ($z);
                     $action->setTime((new \DateTime('now'))->sub(new \DateInterval('PT' . $j . 'S')));
+
+                    if ($j === $joinTime) {
+                        $action->setAction('join');
+                    } elseif ($j === $enterTime) {
+                        $action->setAction('enterVehicle');
+                    } elseif ($j === $exitTime) {
+                        $action->setAction('exitVehicle');
+                    } elseif ($j === $deathTime) {
+                        $action->setAction('death');
+                    } elseif ($j === $spawnTime) {
+                        $action->setAction('spawn');
+                    } elseif ($j === $killTime) {
+                        $action->setAction('kill');
+                    } elseif ($j === $leftTime) {
+                        $action->setAction('left');
+                    } else {
+                        $action->setAction('idle');
+                    }
+
                     $manager->persist($action);
                 }
 
