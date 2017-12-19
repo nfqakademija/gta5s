@@ -79,7 +79,7 @@ class UsersGenerateFixture extends Fixture
                     $action->setX($x);
                     $action->setY($y);
                     $action->setZ($z);
-                    $action->setTime((new \DateTime('now'))->sub(new \DateInterval('PT' . $j . 'S')));
+                    $action->setTime((new \DateTime('now'))->add(new \DateInterval('PT' . $j . 'S')));
 
                     if ($j === $joinTime) {
                         $action->setAction('join');
