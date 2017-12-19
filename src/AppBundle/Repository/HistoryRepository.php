@@ -55,7 +55,7 @@ class HistoryRepository extends EntityRepository
             ->from(History::class, 'h')
             ->where('h.action != :action')
             ->andWhere('h.account = :account')
-            ->orderBy('h.time', 'DESC')
+            ->orderBy('h.time', 'ASC')
             ->setParameter('action', 'idle')
             ->setParameter('account', $account)
             ->getQuery()->getResult();
