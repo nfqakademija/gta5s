@@ -75,3 +75,36 @@ img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[hr
     background: #bc719e;
     border-color: inherit;
 }
+.user-events-dropdown-button {
+    margin-left: 1em;
+    background: transparent;
+    border: none;
+    color: #fec381;
+    padding: 0;
+    vertical-align: unset;
+}
+.user-events-dropdown-button:hover,
+.user-events-dropdown-button:focus {
+    color: #fde29f;
+    background: transparent;
+}
+.caret {
+    float: none;
+    padding: 0;
+}
+.user-events-menu ul {
+    color: #e7e0df;
+    list-style: none;
+}
+.user-events-menu-hidden {
+    height: 0 !important;
+    padding: 0;
+    margin: 0;
+    border: none !important;
+    transition: height 0.1s ease-out;
+}
+.user-events-menu-active {
+    height: 100px !important;
+    transition: height 0.1s ease-out;
+}
+
